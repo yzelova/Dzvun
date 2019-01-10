@@ -3,6 +3,7 @@ import { Segment, Form, Container, Button } from 'semantic-ui-react';
 
 const req = require('../helpers/fetch');
 const post = req.post;
+const get = req.get;
 
 class Register extends Component {
 
@@ -12,9 +13,15 @@ class Register extends Component {
         firstName: "",
         lastName: "",
         email: "",
-        password: ""
+        password: "",
+        csrf: ""
         };
         this.onChange = this.onChange.bind(this);
+    }
+
+    async componentDidMount() {
+        const csrf = await get('/get-sess-info/csrf');
+        this.setState({csrf: csrf.csrfToken});
     }
 
     onChange(event){
@@ -22,19 +29,13 @@ class Register extends Component {
     }
 
     onSubmit = async () => {
-        try {
-            await post('register', {
+            await post('signup', {
                 firstName: this.state.firstName,
                 lastName: this.state.lastName,
                 email: this.state.email,
-                password: this.state.password});
-            this.props.isLogged(true);
-            this.props.history.push("/");
-        }
-        catch (err)
-        {
-            console.error(err);
-        }
+                password: this.state.password},
+                this.state.csrf);
+
     }
 
 
@@ -43,6 +44,7 @@ class Register extends Component {
             <Container style={{  padding: '1em 0em' }}>
                 <Segment>
                     <Form onSubmit={this.onSubmit}>
+                        <Form.Field hidden name='_csrf' value={this.state.csrf} />
                         <Form.Field>
                             <label> First Name</label>
                             <input placeholder='First Name' required name='firstName' onChange={this.onChange}></input>

@@ -27,7 +27,7 @@ class Register extends Component {
     }
 
     onSubmit = async () => {
-        const res = await post('login', {
+        await post('login', {
             email: this.state.email,
             password: this.state.password},
             this.state.csrf)

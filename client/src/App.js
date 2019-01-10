@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Head from './Components/Head';
 import Body from './Components/Body';
-import Register from './Components/Register';
+import SignUp from './Components/SignUp';
 import Login from './Components/LogIn';
 import {Route, Switch} from 'react-router-dom'
 
@@ -22,8 +22,8 @@ render() {
           <Route exact path='/' render = {(props) =>
                                     (<Body {...props} />)
                                   }/>
-          <Route path='/register' render = {(props) =>
-                                    (<Register {...props} />)
+          <Route path='/signup' render = {(props) =>
+                                    (<SignUp {...props} />)
                                   }/>
           <Route path='/login' render = {(props) =>
                                     (<Login {...props} />)
