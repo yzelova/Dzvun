@@ -48,7 +48,7 @@ import {Link} from 'react-router-dom';
                             <Button as={Link} to='/login' inverted={!fixed}>
                                 Log in
                             </Button>
-                            <Button as={Link} to='/register' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>
+                            <Button as={Link} to='/signup' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>
                                 Sign Up
                             </Button>
                         </Menu.Item>

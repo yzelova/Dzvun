@@ -33,4 +33,19 @@ module.exports = (passport, models) => {
           }
         }
       ));
+
+      passport.use('local-signup', new LocalStrategy({
+        usernameField: 'email',
+        passwordField: 'password'
+      },
+          async function(email, password, done) {
+            const user = await User.findOne({where: { email: email }});
+            if(user){
+              return done(null, false, "User already exists");
+            } else {
+              const user = await User.create({email, password});
+              return done(null, user);
+            }
+          }
+        ));
 } 

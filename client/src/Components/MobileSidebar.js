@@ -49,7 +49,7 @@ class MobileSidebar extends Component {
                                 <Button as='a' inverted>
                                     Log in
                                 </Button>
-                                <Button as={Link} to='/register' inverted style={{ marginLeft: '0.5em' }}>
+                                <Button as={Link} to='/signup' inverted style={{ marginLeft: '0.5em' }}>
                                     Sign Up
                                 </Button>
                             </Menu.Item>
