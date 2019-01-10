@@ -1,6 +1,8 @@
 const LocalStrategy = require('passport-local');
 
-module.exports = (passport, models) => {
+
+module.exports = (passport, ormModels, models) => {
+    const ormUser = ormModels.User;
     const User = models.User;
 
     passport.serializeUser((user, done) => {
@@ -9,7 +11,7 @@ module.exports = (passport, models) => {
     });
       
     passport.deserializeUser(async (id, done) => {
-        const userFromDb = await User.findByPk(id);
+        const userFromDb = await ormUser.findByPk(id);
         const user = {
           id: userFromDb.dataValues.id,
           firstName: userFromDb.dataValues.firstName,
@@ -24,9 +26,10 @@ module.exports = (passport, models) => {
       passwordField: 'password'
     },
         async function(email, password, done) {
-          const user = await User.findOne({where: { email: email }});
+          const user = await ormUser.findOne({where: { email: email }});
           if(user){
-            if(user.password !== password) return done(null, false, "Incorrect password");
+            const comp = await User.validPassword(password, user.password);
+            if(!comp) return done(null, false, "Incorrect password");
             return done(null, user);
           } else {
             return done(null, false, "No such email found")
@@ -39,12 +42,16 @@ module.exports = (passport, models) => {
         passwordField: 'password'
       },
           async function(email, password, done) {
-            const user = await User.findOne({where: { email: email }});
+            const user = await ormUser.findOne({where: { email: email }});
             if(user){
               return done(null, false, "User already exists");
             } else {
-              const user = await User.create({email, password});
-              return done(null, user);
+              const user = await User.createUser(email, password);
+              if(user){
+                return done(null, user);
+              } else {
+                return done(null, false);
+              }
             }
           }
         ));

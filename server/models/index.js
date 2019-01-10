@@ -1,5 +1,5 @@
-module.exports =  (sequelize) => {
-    const User = require('./user')(sequelize);
+module.exports = (ormsModels) => {
+    const User = require('./user')(ormsModels);
     return {
         User
     }
