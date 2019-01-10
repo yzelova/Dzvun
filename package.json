@@ -1,0 +1,11 @@
+{
+    "license": "ISC",
+    "scripts": {
+        "client": "cd client && yarn start",
+        "server": "cd server && nodemon server.js",
+        "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+    },
+    "dependencies": {
+        "concurrently": "^4.1.0"
+    }
+}

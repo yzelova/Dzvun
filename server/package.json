@@ -1,0 +1,23 @@
+{
+  "name": "dzvun",
+  "version": "1.0.0",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "csurf": "^1.9.0",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "pg": "^7.7.1",
+    "pg-hstore": "^2.3.2",
+    "react-router-dom": "^4.3.1",
+    "semantic-ui-css": "^2.4.1",
+    "sequelize": "^4.42.0",
+    "session": "^0.1.0"
+  },
+  "devDependencies": {
+    "concurrently": "^4.0.1"
+  }
+}
