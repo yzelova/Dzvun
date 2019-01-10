@@ -19,8 +19,9 @@ module.exports = (app) => {
 
     const csrfProtection = csrf({cookie: true});
 
-    const models = require('../models/index')(sequelize);
-    require('./passportConfig')(passport, models);
+    const ormModels = require('../orm_models/index')(sequelize);
+    const models = require('../models/index')(ormModels);
+    require('./passportConfig')(passport, ormModels, models);
     require('./routersConfig')(app, passport, csrfProtection);
 
 }
