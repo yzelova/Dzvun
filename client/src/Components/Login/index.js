@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import { Segment, Form, Container, Button } from 'semantic-ui-react';
+import './index.css';
 
-const req = require('../helpers/fetch');
+
+const req = require('../../helpers/fetch');
 const post = req.post;
 const get = req.get;
 
@@ -36,7 +38,7 @@ class Register extends Component {
 
     render () {
         return (
-            <Container style={{  padding: '1em 0em' }}>
+            <Container style={{  padding: '0em 0em'}} className="body-container">
                 <Segment>
                     <Form onSubmit={this.onSubmit}>
                         <Form.Field hidden name='_csrf' value={this.state.csrf} />
@@ -49,7 +51,7 @@ class Register extends Component {
                             <input type='password' placeholder='Password' required name='password' onChange={this.onChange}></input>
                         </Form.Field>
                         <Form.Field>
-                            <Button fluid type='submit'>Submit</Button>
+                            <Button fluid type='submit'>Log In</Button>
                         </Form.Field>      
                     </Form>
                 </Segment>

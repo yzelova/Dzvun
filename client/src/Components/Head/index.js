@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import DesktopHeader from './DesktopHeader.js';
-import MobileSidebar from './MobileSidebar.js'
+import DesktopHeader from '../DekstopHeader';
+import MobileSidebar from '../MobileSidebar';
 import {
   BrowserView,
   MobileView
