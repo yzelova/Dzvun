@@ -24,7 +24,7 @@
 
 .body-div{
   background-color:white;
-  height: 1550px; 
+  min-height: 1300; 
   max-width:  1550px;
   margin-left:auto;
   margin-right:auto;

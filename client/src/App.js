@@ -3,6 +3,7 @@ import Head from './Components/Head/index';
 import Body from './Components/Body/';
 import SignUp from './Components/SignUp/';
 import Login from './Components/Login/';
+import Footer from './Components/Footer';
 import { Route, Switch } from 'react-router-dom'
 
 import './App.css';
@@ -30,6 +31,7 @@ class App extends Component {
               (<Login {...props} />)
             } />
           </Switch>
+          <Footer/>
         </div>
       </div>
     );
