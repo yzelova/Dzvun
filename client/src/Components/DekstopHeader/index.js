@@ -7,10 +7,11 @@ import {
     Segment,
     Visibility,
     Image,
-    Popup,
-    Grid
+    Popup
 } from 'semantic-ui-react';
 import Login from '../Login';
+import HelpDropdown from "../HelpDropdown";
+import ProductsDropdown from '../ProductsDropdown';
 import { Link } from 'react-router-dom';
 import logo from '../../public/images/dzvun-logo.jpg';
 import './index.css';
@@ -51,10 +52,37 @@ class DesktopHeader extends Component {
                         size='large'
                         className="dekstopheader-menu"
                         style={{ padding: '0em 0em' }}
+                        items={3}
                     >
                         <Container>
                             <Menu.Item as={Link} to='/' style={{ padding: '0em 0em' }}  >
                                 <Image src={logo} className='logo-image' />
+                            </Menu.Item>
+                            <Menu.Item position="right">
+                                <Popup
+                                    trigger={
+                                        <Button className="dekstopheader-menu-button">All Products</Button>
+                                    }
+                                    content={
+                                        <ProductsDropdown className="all-products-popup"/>
+                                    }
+                                    position="bottom center"
+                                    basic
+                                    on="click"
+                                />
+
+                                <Button className="dekstopheader-menu-button">Plans</Button>
+                                <Popup
+                                    position="bottom left"
+                                    trigger={
+                                        <Button className="dekstopheader-menu-button">Help</Button>
+                                    }
+                                    content={
+                                        <HelpDropdown/>
+                                    }
+                                    basic
+                                    on="click"
+                                />
                             </Menu.Item>
                             <Menu.Item position='right' style={{ padding: '1em 0em' }}>
                                 <Popup

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-    Segment, Container, Divider, Grid, Header
+    Segment, Container, Grid, Header
 }
     from 'semantic-ui-react';
 

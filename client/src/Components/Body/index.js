@@ -32,15 +32,6 @@ class Body extends Component {
 
     return (
       <div>
-        {isLogged ?
-          <div>
-            {this.renderLogged()}
-          </div>
-          :
-          <div>
-            {this.renderNotLogged()}
-          </div>
-        }
         <Swiper />
         <Grid className="picture-menu-grid">
           <Grid.Row>

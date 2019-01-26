@@ -6,7 +6,6 @@ import {Image} from 'semantic-ui-react';
 import './index.css'
 import ringImage from '../../public/images/ring-image.jpg';
 
-const OPTION_KEYS = ['navigation', 'pagination', 'scrollBar', 'loop']
 
 export default class Demo extends Component {
   constructor() {
