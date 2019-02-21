@@ -15,14 +15,14 @@ class Body extends Component {
   renderNotLogged = () => {
     return (
       <Header as='h1' textAlign='center'>
-        Hi
+        Not Logged
       </Header>
     );
   }
   renderLogged = () => {
     return (
       <Header as='h1' textAlign='center'>
-        Heyyyyy
+        Logged
       </Header>
     );
   }
@@ -32,6 +32,11 @@ class Body extends Component {
 
     return (
       <div>
+        {isLogged?
+          this.renderLogged()
+          :
+          this.renderNotLogged()
+        }
         <Swiper />
         <Grid className="picture-menu-grid">
           <Grid.Row>
