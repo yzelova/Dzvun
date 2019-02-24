@@ -23,7 +23,7 @@ module.exports = (passport, ormModels, models) => {
 
     passport.use('local-login', new LocalStrategy({
       usernameField: 'email',
-      passwordField: 'password'
+      passwordField: 'password',
     },
         async function(email, password, done) {
           const user = await ormUser.findOne({where: { email: email }});
@@ -39,14 +39,17 @@ module.exports = (passport, ormModels, models) => {
 
       passport.use('local-signup', new LocalStrategy({
         usernameField: 'email',
-        passwordField: 'password'
+        passwordField: 'password',
+        passReqToCallback: true
       },
-          async function(email, password, done) {
+          async function(req, email, password, done) {
+            const firstName = req.body.firstName;
+            const lastName = req.body.lastName;
             const user = await ormUser.findOne({where: { email: email }});
             if(user){
               return done(null, false, "User already exists");
             } else {
-              const user = await User.createUser(email, password);
+              const user = await User.createUser(firstName, lastName, email, password);
               if(user){
                 return done(null, user);
               } else {

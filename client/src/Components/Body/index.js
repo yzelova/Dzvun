@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-  Header,
   Image,
   Grid
 }
@@ -12,23 +11,7 @@ import './index.css';
 
 
 class Body extends Component {
-  renderNotLogged = () => {
-    return (
-      <Header as='h1' textAlign='center'>
-        Not Logged
-      </Header>
-    );
-  }
-  renderLogged = () => {
-    return (
-      <Header as='h1' textAlign='center'>
-        Logged
-      </Header>
-    );
-  }
   render() {
-
-    const isLogged = this.props.isLogged;
 
     return (
       <div>

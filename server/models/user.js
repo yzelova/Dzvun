@@ -2,10 +2,10 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 module.exports = (ormModels) => {
     const ormUser = ormModels.User;
-    async function createUser (email, password) {
+    async function createUser (firstName, lastName, email, password) {
         const hash = await bcrypt.hash(password, saltRounds);
         if(hash) {
-            const user = await ormUser.create({email, password: hash});
+            const user = await ormUser.create({firstName, lastName, email, password: hash});
             return user;
         } 
     }

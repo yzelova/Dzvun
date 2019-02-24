@@ -7,21 +7,26 @@ const req = require('../../helpers/fetch');
 const post = req.post;
 const get = req.get;
 
-class Register extends Component {
+class Login extends Component {
 
     constructor(){
         super();
         this.state = {
         email: "",
         password: "",
-        csrf: ""
+        csrf: null,
+        loggedIn: false
         };
         this.onChange = this.onChange.bind(this);
     }
 
     async componentDidMount() {
-        const csrf = await get('/get-sess-info/csrf');
-        this.setState({csrf: csrf.csrfToken});
+        const res = await get('/get-sess-info/csrf');
+        if(res.ok) {
+            const csrf = (await res.json()).csrfToken;
+            this.setState({csrf});
+        }
+        
     }
 
     onChange(event){
@@ -29,35 +34,38 @@ class Register extends Component {
     }
 
     onSubmit = async () => {
-        await post('login', {
+        const res = await post('login', {
             email: this.state.email,
             password: this.state.password},
             this.state.csrf)
+        if(res.ok) {
+            window.location.reload();
+        }
     }
 
 
     render () {
         return (
-            <Container style={{  padding: '0em 0em'}} className="body-container">
-                <Segment>
-                    <Form onSubmit={this.onSubmit}>
-                        <Form.Field hidden name='_csrf' value={this.state.csrf} />
-                        <Form.Field>
-                            <label> E-mail </label>
-                            <input type='email' placeholder='E-mail' required name='email' onChange={this.onChange}></input>
-                        </Form.Field>
-                        <Form.Field>
-                            <label> Password </label>
-                            <input type='password' placeholder='Password' required name='password' onChange={this.onChange}></input>
-                        </Form.Field>
-                        <Form.Field>
-                            <Button fluid type='submit'>Log In</Button>
-                        </Form.Field>      
-                    </Form>
-                </Segment>
-            </Container>    
+        <Container style={{  padding: '0em 0em'}} className="body-container">
+            <Segment>
+                <Form onSubmit={this.onSubmit}>
+                    <Form.Field hidden name='_csrf' value={this.state.csrf} />
+                    <Form.Field>
+                        <label> E-mail </label>
+                        <input type='email' placeholder='E-mail' required name='email' onChange={this.onChange}></input>
+                    </Form.Field>
+                    <Form.Field>
+                        <label> Password </label>
+                        <input type='password' placeholder='Password' required name='password' onChange={this.onChange}></input>
+                    </Form.Field>
+                    <Form.Field>
+                        <Button fluid type='submit'>Log In</Button>
+                    </Form.Field>      
+                </Form>
+            </Segment>
+        </Container>    
         )
     }
 }
 
-export default Register;
+export default Login;
