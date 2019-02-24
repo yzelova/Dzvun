@@ -9,11 +9,20 @@ import {
 
 class Head extends Component 
 {
+    constructor (props) {
+        super(props);
+        this.state = {
+            user: props.user,
+            authenticating: props.authenticating
+        }
+    }
     render () {
+        const user = this.state.user;
+        const authenticating = this.state.authenticating;
         return (
             <div>
                 <BrowserView>
-                    <DesktopHeader/>
+                    <DesktopHeader user = {user} authenticating = {authenticating}/>
                 </BrowserView>
         
                 <MobileView>

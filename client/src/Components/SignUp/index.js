@@ -20,8 +20,12 @@ class Register extends Component {
     }
 
     async componentDidMount() {
-        const csrf = await get('/get-sess-info/csrf');
-        this.setState({csrf: csrf.csrfToken});
+        const res = await get('/get-sess-info/csrf');
+        if(res.ok){
+            const csrf = await res.json();
+            this.setState({csrf: csrf.csrfToken});
+        }
+        
     }
 
     onChange(event){
@@ -29,12 +33,15 @@ class Register extends Component {
     }
 
     onSubmit = async () => {
-            await post('signup', {
+        const res = await post('signup', {
                 firstName: this.state.firstName,
                 lastName: this.state.lastName,
                 email: this.state.email,
                 password: this.state.password},
                 this.state.csrf);
+        if(res.ok) {
+            window.location.reload();
+        }
 
     }
 

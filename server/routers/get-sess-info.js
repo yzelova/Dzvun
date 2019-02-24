@@ -9,7 +9,8 @@ router.use(bodyParser.urlencoded({
 module.exports = (csrfProtection) => {
     router.get('/user', (req, res) => {
         const user = req.user;
-        res.json({user})
+        if(user) res.json({user})
+        else res.status(403).send("not logged")
     })
     router.get('/csrf', csrfProtection, (req, res) => {
         res.json({csrfToken: req.csrfToken()});

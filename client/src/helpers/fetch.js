@@ -20,7 +20,7 @@ async function get(path) {
             'Content-Type': 'application/json'
         }
     })
-    return res.json();   
+    return res;
 }
 
 export {post, get}
