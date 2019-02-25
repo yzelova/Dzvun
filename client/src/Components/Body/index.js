@@ -15,11 +15,6 @@ class Body extends Component {
 
     return (
       <div>
-        {isLogged?
-          this.renderLogged()
-          :
-          this.renderNotLogged()
-        }
         <Swiper />
         <Grid className="picture-menu-grid">
           <Grid.Row>
