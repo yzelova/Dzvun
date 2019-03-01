@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('Dzvun', 'postgres', '12356', {
-    host: 'localhost',
+const sequelize = new Sequelize(process.env.DBNAME||'Dzvun', process.env.DBUserId||'postgres',process.env.DBPASS||'12356', {
+    host: process.env.DBCON||'localhost',
     dialect: 'postgres',
     operatorsAliases: false,
     pool: {
