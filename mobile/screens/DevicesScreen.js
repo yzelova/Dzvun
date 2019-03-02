@@ -9,28 +9,30 @@ export default class DevicesScreen extends React.Component {
 
   static navigationOptions = {
     title: 'Devices',
+    //header: null,
   };
 
   render() {
-    const {navigate} = this.props.navigation;
+    const { navigate } = this.props.navigation;
     return (
-      <ScrollView style={styles.container}>
-        <View style={styles.screen}>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('LinksStack')}>
-            <View style={styles.box}>
-              {/* Go ahead and delete ExpoLinksView and replace it with your
+      <View style={styles.container}>
+        <ScrollView style={styles.container}>
+          <View style={styles.screen}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('WiFiSetup')}>
+              <View style={styles.box}>
+                {/* Go ahead and delete ExpoLinksView and replace it with your
            * content, we just wanted to provide you with some helpful links */}
-              <Image source={require('../assets/images/plus.png')} style={{ width: 250, height: 250 }} />
-            </View>
-          </TouchableOpacity>
-          <View>
-            <Text style={styles.text}>
-              You currently have 0 devices
+                <Image source={require('../assets/images/plus.png')} style={{ width: 250, height: 250 }} />
+              </View>
+            </TouchableOpacity>
+            <View>
+              <Text style={styles.text}>
+                You currently have 0 devices
           </Text>
+            </View>
           </View>
-        </View>
-      </ScrollView>
-
+        </ScrollView>
+      </View>
     );
   }
 }

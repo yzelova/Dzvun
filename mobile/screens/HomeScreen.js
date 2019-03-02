@@ -7,6 +7,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Button
 } from 'react-native';
 import { WebBrowser } from 'expo';
 
@@ -14,7 +15,8 @@ import { MonoText } from '../components/StyledText';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
-    header: null,
+    title: "Home",
+    //header: null,
   };
 
   render() {
@@ -45,7 +47,10 @@ export default class HomeScreen extends React.Component {
               Change this text and your app will automatically reload.
             </Text>
           </View>
-
+          <Button
+            title="Go to Details"
+            onPress={() => this.props.navigation.navigate('Details')}
+          />
           <View style={styles.helpContainer}>
             <TouchableOpacity onPress={this._handleHelpPress} style={styles.helpLink}>
               <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
@@ -73,11 +78,11 @@ export default class HomeScreen extends React.Component {
       );
 
       return (
-          <Text style={styles.developmentModeText}>
-            Yoana and Boris shall make this project great again
-            Development mode is enabled, your app will be slower but you can use useful development
+        <Text style={styles.developmentModeText}>
+          Yoana and Boris shall make this project great again
+          Development mode is enabled, your app will be slower but you can use useful development
           tools. {learnMoreButton}
-          </Text>
+        </Text>
       );
     } else {
       return (
