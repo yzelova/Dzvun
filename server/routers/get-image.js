@@ -20,6 +20,7 @@ const upload = multer({storage: storage});
 module.exports = () => {
     router.post('/',upload.single('productImage'), (req, res) => {
         console.log(req.file);
+        res.status(200).send('Image saved');
     })
     return router;
 }
