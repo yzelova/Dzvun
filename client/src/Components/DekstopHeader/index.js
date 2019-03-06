@@ -110,13 +110,13 @@ class DesktopHeader extends Component {
                             </Menu.Item>
                             <Menu.Item position="right">
                                 <Button as={Link} to='/timeline' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }} className="dekstopheader-button" color="blue">
-                                    Timeline
+                                    Дневник
                                 </Button>
                                 <Button as={Link} to='/profile' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }} className="dekstopheader-button" color="blue">
-                                    Profile
+                                    Профил
                                 </Button>
                                 <Button onClick = {this.handleSignOut} inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }} className="dekstopheader-button" color="blue">
-                                    Sign Out
+                                    Изход
                                 </Button>
                             </Menu.Item>
                         </Container>
@@ -155,7 +155,7 @@ class DesktopHeader extends Component {
                                     <Menu.Item position="right">
                                         <Popup
                                             trigger={
-                                                <Button className="dekstopheader-menu-button">All Products</Button>
+                                                <Button className="dekstopheader-menu-button">Всички продукти</Button>
                                             }
                                             content={
                                                 <ProductsDropdown className="all-products-popup"/>
@@ -165,11 +165,11 @@ class DesktopHeader extends Component {
                                             on="click"
                                         />
         
-                                        <Button className="dekstopheader-menu-button">Plans</Button>
+                                        <Button className="dekstopheader-menu-button">Планове</Button>
                                         <Popup
                                             position="bottom left"
                                             trigger={
-                                                <Button className="dekstopheader-menu-button">Help</Button>
+                                                <Button className="dekstopheader-menu-button">Помощ</Button>
                                             }
                                             content={
                                                 <HelpDropdown/>
@@ -182,7 +182,7 @@ class DesktopHeader extends Component {
                                         <Popup
                                             trigger={
                                                 <Button inverted={!fixed} className="dekstopheader-button" color="blue">
-                                                    Log in
+                                                    Вход
                                             </Button>
                                             }
                                             content={
@@ -192,7 +192,7 @@ class DesktopHeader extends Component {
                                             on="click"
                                         />
                                         <Button as={Link} to='/signup' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }} className="dekstopheader-button" color="blue">
-                                            Sign Up
+                                            Регистрация
                                             </Button>
                                     </Menu.Item>
                                 </Container>
