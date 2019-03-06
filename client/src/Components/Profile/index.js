@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {Container, Header, Divider, Image, Label} from 'semantic-ui-react'
+import bellImg from '../../public/images/bell.png';
 
 class Profile extends Component {
 
@@ -18,9 +20,12 @@ class Profile extends Component {
             lastName = this.state.lastName;
         }
         return (
-            <div>
-                <h1>Hi, {firstName} {lastName}</h1>
-            </div>
+            <Container>
+                <Divider/>
+                <Header as='h1'>Hi, {firstName} {lastName}</Header>
+                <Header as='h3'>Check out your devices: </Header>
+                <Image src={bellImg} centered />
+            </Container>
         )
     }
 }

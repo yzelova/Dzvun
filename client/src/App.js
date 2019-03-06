@@ -5,6 +5,8 @@ import SignUp from './Components/SignUp/';
 import Login from './Components/Login/';
 import Footer from './Components/Footer';
 import Profile from './Components/Profile';
+import ReactUploadImage from './Components/ReactUploadImage';
+import Timeline from './Components/Timeline';
 import { Route, Switch, Redirect } from 'react-router-dom'
 
 import './App.css';
@@ -36,7 +38,6 @@ class App extends Component {
     const isAuth = this.state.isAuth;
     const user = this.state.user;
     const authenticating = this.state.authenticating;
-    console.log(user)
     if(authenticating)
     {
       return (
@@ -49,11 +50,12 @@ class App extends Component {
                 <div className="body-div">
                   <Head user= {user} authenticating = {authenticating}/>
                   <Switch>
-                    <Route exact path='/' render = {() => (isAuth ?  (<Redirect to='/profile'/>) :  (<Body />) )}/>
-                    <Route path='/signup' render = {() => (isAuth ?  (<Redirect to='/profile'/>) :  (<SignUp />) )}/>
-                    <Route path='/login' render = {() => (isAuth ?  (<Redirect to='/profile'/>) :  (<Login />) )}/>
+                    <Route exact path='/' render = {() => (isAuth ?  (<Redirect to='/timeline'/>) :  (<Body />) )}/>
+                    <Route path='/signup' render = {() => (isAuth ?  (<Redirect to='/timeline'/>) :  (<SignUp />) )}/>
+                    <Route path='/login' render = {() => (isAuth ?  (<Redirect to='/timeline'/>) :  (<Login />) )}/>
+                    <Route path='/timeline' render = {() => (isAuth ?  (<Timeline/>) :  (<Redirect to='/login'/>) ) }  />
                     <Route path='/profile' render = {() => (isAuth ? (<Profile user = {user} />) : (<Redirect to='/login'/>) )}/>
-                    } />
+                    <Route path='/upload' component = {ReactUploadImage} />
                   </Switch>
                   <Footer/>
                 </div>

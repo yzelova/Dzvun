@@ -4,8 +4,10 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const csrf = require('csurf');
+const cors = require('cors')
 
 module.exports = (app) => {
+    app.use(cors());
     app.use(cookieParser());
     app.use(session({
         secret: 'i am a muffin',
@@ -22,6 +24,6 @@ module.exports = (app) => {
     const ormModels = require('../orm_models/index')(sequelize);
     const models = require('../models/index')(ormModels);
     require('./passportConfig')(passport, ormModels, models);
-    require('./routersConfig')(app, passport, csrfProtection);
+    require('./routersConfig')(app, ormModels, passport, csrfProtection);
 
 }

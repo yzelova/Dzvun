@@ -109,7 +109,12 @@ class DesktopHeader extends Component {
                                 <Image src={logo} className='logo-image' />
                             </Menu.Item>
                             <Menu.Item position="right">
-                               
+                                <Button as={Link} to='/timeline' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }} className="dekstopheader-button" color="blue">
+                                    Timeline
+                                </Button>
+                                <Button as={Link} to='/profile' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }} className="dekstopheader-button" color="blue">
+                                    Profile
+                                </Button>
                                 <Button onClick = {this.handleSignOut} inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }} className="dekstopheader-button" color="blue">
                                     Sign Out
                                 </Button>

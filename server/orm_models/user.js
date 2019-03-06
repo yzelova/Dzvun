@@ -22,7 +22,10 @@ module.exports = (sequelize) => {
         password: {
           field: 'password',
           type: Sequelize.STRING
-        }
+        },
+      },  {
+        timestamps: false,
+        freezeTableName: true,
       });
       return User;
 }
