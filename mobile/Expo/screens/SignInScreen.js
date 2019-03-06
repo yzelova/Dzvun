@@ -4,6 +4,7 @@ import {
     AsyncStorage,
     StatusBar,
     StyleSheet,
+    TextInput,
     View,
     Button
   } from 'react-native';
@@ -17,6 +18,8 @@ export default class SignInScreen extends React.Component {
     render() {
       return (
         <View>
+          <TextInput secureTextEntry={false} style= {styles.usernamebox} placeholder='Username' />
+          <TextInput secureTextEntry={true} style= {styles.passwordbox} placeholder='Password' />
           <Button title="Sign in!" onPress={this._signInAsync} />
         </View>
       );
@@ -52,3 +55,14 @@ export default class SignInScreen extends React.Component {
     };
   }
   
+
+  const styles = StyleSheet.create({
+    usernamebox:{
+      padding:50,
+      fontSize:30
+    },
+    passwordbox:{
+      padding:50,
+      fontSize:30
+    }
+  })

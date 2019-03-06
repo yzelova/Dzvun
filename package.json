@@ -4,11 +4,14 @@
         "client": "cd client && yarn start",
         "server": "cd server && nodemon server.js",
         "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
-        "start": "concurrently --kill-others-on-fail \"npm server\" \"npm client\""
+        "start": "cd server && node server.js"
     },
     "dependencies": {
         "concurrently": "^4.1.0",
         "create-react-native-app": "2.0.2",
         "multer": "^1.4.1"
+    },
+    "engines": {
+        "node": "10.6.0"
     }
 }

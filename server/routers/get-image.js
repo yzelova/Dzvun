@@ -23,6 +23,7 @@ module.exports = (ormModels) => {
         //TO DO: User ID to be included in request from device
         const userId = testUserId;
         await UserImage.create({userId, imageName})
+        res.status(200).send('Image saved');
     })
     return router;
 }
