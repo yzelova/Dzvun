@@ -17,6 +17,7 @@ module.exports = (passport, csrfProtection) => {
                 if(err)  {
                     return res.status(400).send();
                 }
+                req.session.user = req.user;
                 return res.json();
             });
           })(req, res, next);

@@ -5,4 +5,4 @@ yarn.lock
 node_modules
 client/node_modules
 client/yarn.lock
-server/uploads
+uploads
