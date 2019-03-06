@@ -53,23 +53,23 @@ class Register extends Component {
                     <Form onSubmit={this.onSubmit}>
                         <Form.Field hidden name='_csrf' value={this.state.csrf} />
                         <Form.Field>
-                            <label> First Name</label>
-                            <input placeholder='First Name' required name='firstName' onChange={this.onChange}></input>
+                            <label> Собствено име</label>
+                            <input placeholder='Собствено име' required name='firstName' onChange={this.onChange}></input>
                         </Form.Field>
                         <Form.Field>
-                            <label> Last Name</label>
-                            <input placeholder='First Name' required name='lastName' onChange={this.onChange}></input>
+                            <label> Фамилия</label>
+                            <input placeholder='Фамилия' required name='lastName' onChange={this.onChange}></input>
                         </Form.Field>
                         <Form.Field>
                             <label> E-mail </label>
                             <input type='email' placeholder='E-mail' required name='email' onChange={this.onChange}></input>
                         </Form.Field>
                         <Form.Field>
-                            <label> Password </label>
-                            <input type='password' placeholder='Password' required name='password' onChange={this.onChange}></input>
+                            <label> Парола </label>
+                            <input type='password' placeholder='Парола' required name='password' onChange={this.onChange}></input>
                         </Form.Field>
                         <Form.Field>
-                            <Button fluid type='submit'>Submit</Button>
+                            <Button fluid type='submit'>Регистрирай се!</Button>
                         </Form.Field>
                         
                     </Form>

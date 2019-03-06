@@ -22,7 +22,7 @@ class ProductsDropdown extends Component {
                 <Container>
                     <Image src={productImage} size="tiny" />
                     <Header> Dzvun </Header>
-                    <Header.Subheader> New </Header.Subheader>
+                    <Header.Subheader> Ново </Header.Subheader>
                 </Container>
             </Grid>
         )

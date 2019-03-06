@@ -22,8 +22,8 @@ class Profile extends Component {
         return (
             <Container>
                 <Divider/>
-                <Header as='h1'>Hi, {firstName} {lastName}</Header>
-                <Header as='h3'>Check out your devices: </Header>
+                <Header as='h1'>Привет, {firstName} {lastName}</Header>
+                <Header as='h3'>Твоите устройства: </Header>
                 <Image src={bellImg} centered />
             </Container>
         )

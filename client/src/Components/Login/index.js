@@ -55,11 +55,11 @@ class Login extends Component {
                         <input type='email' placeholder='E-mail' required name='email' onChange={this.onChange}></input>
                     </Form.Field>
                     <Form.Field>
-                        <label> Password </label>
-                        <input type='password' placeholder='Password' required name='password' onChange={this.onChange}></input>
+                        <label> Парола </label>
+                        <input type='password' placeholder='Парола' required name='password' onChange={this.onChange}></input>
                     </Form.Field>
                     <Form.Field>
-                        <Button fluid type='submit'>Log In</Button>
+                        <Button fluid type='submit'>Вход</Button>
                     </Form.Field>      
                 </Form>
             </Segment>

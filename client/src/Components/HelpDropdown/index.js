@@ -16,13 +16,13 @@ class ProductsDropdown extends Component {
         return (
             <Container className="help-container">
                 <Header>
-                    FAQ
+                    Често Задавани Въпроси
                 </Header>
                 <Header>
-                    Guides
+                    Съвети
                 </Header>
                 <Header>
-                    Contact Us
+                    Контакти
                 </Header>
             </Container>
         )

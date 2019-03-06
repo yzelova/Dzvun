@@ -27,10 +27,10 @@ class MobileSidebar extends Component {
                 visible={this.state.sidebarOpened}
                 >
                     <Menu.Item as='h3'>
-                        Ring Ring
+                        Dzvun
                     </Menu.Item>
                     <Menu.Item as={Link} to='/' onClick={this.handleToggle}>
-                        Home
+                        Начало
                     </Menu.Item>
                 </Sidebar>
 
@@ -47,10 +47,10 @@ class MobileSidebar extends Component {
                             </Menu.Item>
                             <Menu.Item position='right'>
                                 <Button as='a' inverted>
-                                    Log in
+                                    Вход
                                 </Button>
                                 <Button as={Link} to='/signup' inverted style={{ marginLeft: '0.5em' }}>
-                                    Sign Up
+                                    Регистрация
                                 </Button>
                             </Menu.Item>
                         </Menu>
