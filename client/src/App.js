@@ -50,7 +50,7 @@ class App extends Component {
                 <div className="body-div">
                   <Head user= {user} authenticating = {authenticating}/>
                   <Switch>
-                    <Route exact path='/' render = {() => (isAuth ?  (<Redirect to='/timeline'/>) :  (<Body />) )}/>
+                    <Route exact path='/' component = {Body}/>
                     <Route path='/signup' render = {() => (isAuth ?  (<Redirect to='/timeline'/>) :  (<SignUp />) )}/>
                     <Route path='/login' render = {() => (isAuth ?  (<Redirect to='/timeline'/>) :  (<Login />) )}/>
                     <Route path='/timeline' render = {() => (isAuth ?  (<Timeline/>) :  (<Redirect to='/login'/>) ) }  />

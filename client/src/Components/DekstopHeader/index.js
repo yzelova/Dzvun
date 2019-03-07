@@ -109,6 +109,32 @@ class DesktopHeader extends Component {
                                 <Image src={logo} className='logo-image' />
                             </Menu.Item>
                             <Menu.Item position="right">
+                                <Popup
+                                    trigger={
+                                        <Button className="dekstopheader-menu-button">Всички продукти</Button>
+                                    }
+                                    content={
+                                        <ProductsDropdown className="all-products-popup"/>
+                                    }
+                                    position="bottom center"
+                                    basic
+                                    on="click"
+                                />
+
+                                <Button className="dekstopheader-menu-button">Планове</Button>
+                                <Popup
+                                    position="bottom left"
+                                    trigger={
+                                        <Button className="dekstopheader-menu-button">Помощ</Button>
+                                    }
+                                    content={
+                                        <HelpDropdown/>
+                                    }
+                                    basic
+                                    on="click"
+                                />
+                            </Menu.Item>
+                            <Menu.Item position="right">
                                 <Button as={Link} to='/timeline' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }} className="dekstopheader-button" color="blue">
                                     Дневник
                                 </Button>
