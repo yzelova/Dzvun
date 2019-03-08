@@ -14,7 +14,7 @@ import {
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
-    title: "Home",
+    title: "Начало",
     //header: null,
   };
 
@@ -25,9 +25,11 @@ export default class HomeScreen extends React.Component {
           <View style={styles.welcomeContainer}>
             <Image
               source={
-                require('../../../server/public/dzvun-logo.png')
+                require('../assets/images/dzvun-logo.png')
               }
-              style={styles.welcomeImage}
+              style={
+                styles.welcomeImage
+              }
             />
           </View>
 
@@ -35,7 +37,7 @@ export default class HomeScreen extends React.Component {
 
             <Text style={styles.getStartedText}>Добре дошли в Dzvun!</Text>
             <Text style={styles.getStartedText}>
-              Управлявайте устройството си бързо и сигурно!
+              Управлявайте устройствата си бързо и сигурно!
             </Text>
           </View>
         </ScrollView>
@@ -67,8 +69,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   welcomeImage: {
-    width: 100,
-    height: 80,
+    width: 200,
+    height: 150,
     resizeMode: 'contain',
     marginTop: 3,
     marginLeft: -10,
