@@ -1,13 +1,19 @@
 import React from 'react';
 import { ScrollView, View, StyleSheet, Image, Text, TouchableOpacity, AsyncStorage } from 'react-native';
-
+import { Buffer } from 'buffer';
 
 export default class DevicesScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      device: 'False'
+      device: 'False',
+      images: [],
+      loadingImages: true
     };
+  }
+
+  componentDidMount() {
+    this.timer = setInterval(() => this._LoadImages(), 1000)
   }
 
   static navigationOptions = {
@@ -15,28 +21,72 @@ export default class DevicesScreen extends React.Component {
     //header: null,
   };
 
+
+
+  arrayBufferToBase64(buffer) {
+    let binary = '';
+    let bytes = new Uint8Array(buffer);
+    let len = bytes.byteLength;
+    for (let i = 0; i < len; i++) {
+      binary += String.fromCharCode(bytes[i]);
+    }
+    const ret = Buffer.from(binary, 'ascii').toString('base64');
+    return ret;
+  }
+
+
+  renderImages() {
+    const ret = [];
+    let id = 0;
+    this.state.images.forEach(image => {
+      const src = 'data:image/jpeg;base64,' + image;
+      ret.push(
+        <View key={id}>
+
+          <Image style={{ width: 250, height: 250 }} source={{ uri: src }} key={id} />
+        </View>
+      )
+      id++;
+    });
+    return ret;
+  }
+
   _LoadDevices = async () => {
     const device = await AsyncStorage.getItem('Device');
     this.setState({ device });
   }
 
+  _LoadImages = async () => {
+    if (this.state.device == 'True') {
+      const images = (await (await fetch('http://82.137.124.87:5000/timeline', {
+        method: "GET"
+      })).json()).imageRes;
+      //console.log(images);
+      const imagesBase64 = [];
+      images.forEach(image => {
+        const base64 = this.arrayBufferToBase64(image.data);
+        imagesBase64.push(base64);
+      });
+      this.setState({ loadingImages: false, images: imagesBase64 })
+    }
+  }
+
   render() {
-    const { navigate } = this.props.navigation;
+    const renderedImages = this.renderImages();
     this.state.device == 'False' ? this._LoadDevices() : null;
     return (
       <ScrollView style={styles.container}>
         {this.state.device == 'True' ?
           <View style={styles.screen}>
-            <Image source={require('./../assets/images/robot-dev.png')} />
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('WiFiSetup')}>
-              <View style={styles.boxItems}>
-                {}
-                <Image source={require('../assets/images/plus.png')} style={{ width: 100, height: 100 }} />
-              </View>
-            </TouchableOpacity>
             <Text style={styles.text}>
-              В момента имате 1 свързано устройство
+              В момента имате 1 свързано устройство и то показва:
             </Text>
+            {this.state.loadingImages ?
+              <Text> 0 Снимки </Text> :
+              <View style={styles.container}>
+                {renderedImages}
+              </View>
+            }
           </View>
           :
           <View style={styles.screen}>
