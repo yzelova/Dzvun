@@ -18,7 +18,7 @@ const HomeStack = createStackNavigator({
 });
 
 HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
+  tabBarLabel: 'Инфо',
   tabBarIcon: ({ focused }) => (
     <Icon
       name='info'
@@ -32,7 +32,7 @@ const SettingsStack = createStackNavigator({
 });
 
 SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
+  tabBarLabel: 'Настройки',
   tabBarIcon: ({ focused }) => (
     <Icon
       name='settings'
@@ -46,7 +46,7 @@ const DevicesStack = createStackNavigator({
 });
 
 DevicesStack.navigationOptions = {
-  tabBarLabel: 'Devices',
+  tabBarLabel: 'Устройства',
   tabBarIcon: ({ focused }) => (
     <Icon
       name='visibility'

@@ -1,22 +1,44 @@
 import React from 'react';
-import { ScrollView, View, StyleSheet, Image, Text, TouchableOpacity } from 'react-native';
+import { ScrollView, View, StyleSheet, Image, Text, TouchableOpacity, AsyncStorage } from 'react-native';
 
 
 export default class DevicesScreen extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      device: 'False'
+    };
   }
 
   static navigationOptions = {
-    title: 'Devices',
+    title: 'Устройства',
     //header: null,
   };
 
+  _LoadDevices = async () => {
+    const device = await AsyncStorage.getItem('Device');
+    this.setState({ device });
+  }
+
   render() {
     const { navigate } = this.props.navigation;
+    this.state.device == 'False' ? this._LoadDevices() : null;
     return (
-      <View style={styles.container}>
-        <ScrollView style={styles.container}>
+      <ScrollView style={styles.container}>
+        {this.state.device == 'True' ?
+          <View style={styles.screen}>
+            <Image source={require('./../assets/images/robot-dev.png')} />
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('WiFiSetup')}>
+              <View style={styles.boxItems}>
+                {}
+                <Image source={require('../assets/images/plus.png')} style={{ width: 100, height: 100 }} />
+              </View>
+            </TouchableOpacity>
+            <Text style={styles.text}>
+              В момента имате 1 свързано устройство
+            </Text>
+          </View>
+          :
           <View style={styles.screen}>
             <TouchableOpacity onPress={() => this.props.navigation.navigate('WiFiSetup')}>
               <View style={styles.box}>
@@ -27,12 +49,12 @@ export default class DevicesScreen extends React.Component {
             </TouchableOpacity>
             <View>
               <Text style={styles.text}>
-                You currently have 0 devices
-          </Text>
+                В момента нямате свързани устройства
+              </Text>
             </View>
           </View>
-        </ScrollView>
-      </View>
+        }
+      </ScrollView>
     );
   }
 }
@@ -50,11 +72,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   box: {
+    paddingTop: 30,
     width: '70%',
     height: '90%',
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 0.5,
+    borderWidth: 0,
+    borderColor: '#BBBBBB'
+  },
+  boxItems: {
+    alignItems: 'flex-end',
+    marginLeft: 'auto',
+    justifyContent: 'center',
+    borderWidth: 0,
     borderColor: '#BBBBBB'
   },
   text: {

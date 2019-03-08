@@ -23,7 +23,7 @@ module.exports = (ormModels) => {
         })
         const imageRes = [];
         images.forEach(image => {
-            const p = '../uploads/'+image.imageName;
+            const p = `.\\uploads\\${image.imageName}`;
             const file = fs.readFileSync(path.resolve(p));
             imageRes.push(file);
         });
