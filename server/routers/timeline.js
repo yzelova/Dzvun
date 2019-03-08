@@ -12,7 +12,7 @@ module.exports = (ormModels) => {
 
     router.get('/', async  (req, res) => {
         const user = req.user;
-        const id = user.id;
+        const id = testUserId;
         const images = await UserImage.findAll({
             where: {
                 userId: id
