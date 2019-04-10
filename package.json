@@ -1,7 +1,7 @@
 {
     "license": "ISC",
     "scripts": {
-        "client": "cd client && SET PORT=80 && yarn start",
+        "client": "cd client  && yarn start",
         "server": "cd server && nodemon server.js",
         "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
         "start": "cd server && node server.js"
