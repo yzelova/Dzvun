@@ -1,0 +1,6 @@
+applications: 
+ - name: dzvun-server 
+   path: .
+   services: 
+     - postgre-db
+       
