@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 const path = require('path')
 const fs = require('fs')
 
-const testUserId = 77;
+const testUserId = 4;
 
 module.exports = (ormModels) => {
     const UserImage = ormModels.UserImage;
