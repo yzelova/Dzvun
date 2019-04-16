@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage: storage});
 
-const testUserId = 4;
+const testUserId = 77;
 
 module.exports = (ormModels) => {
     const UserImage = ormModels.UserImage;
