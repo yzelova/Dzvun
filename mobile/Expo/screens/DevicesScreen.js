@@ -58,7 +58,7 @@ export default class DevicesScreen extends React.Component {
 
   _LoadImages = async () => {
     if (this.state.device == 'True') {
-      const images = (await (await fetch('http://82.137.124.87:5000/timeline', {
+      const images = (await (await fetch('http://87.116.66.100:5000/timeline', {
         method: "GET"
       })).json()).imageRes;
       //console.log(images);
@@ -94,7 +94,7 @@ export default class DevicesScreen extends React.Component {
               <View style={styles.box}>
                 {/* Go ahead and delete ExpoLinksView and replace it with your
            * content, we just wanted to provide you with some helpful links */}
-                <Image source={require('../assets/images/plus.png')} style={{ width: 250, height: 250 }} />
+                <Image source={require('../assets/images/plus.png')} style={{ width: 250, height: 250, paddingBottom:20 }} />
               </View>
             </TouchableOpacity>
             <View>
