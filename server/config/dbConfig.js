@@ -11,12 +11,11 @@ try {
   credentials = {
     dbname: process.env.DBNAME || 'Dzvun',
     username: process.env.DBUserId || 'postgres',
-    password: process.env.DBPASS || '12356',
+    password: process.env.DBPASS || '123456',
     hostname: process.env.DBCON || 'localhost',
     port: process.env.DBPORT || '5432'
   }
 }
-
 const sequelize = new Sequelize(credentials.dbname, credentials.username, credentials.password, {
   host: credentials.hostname,
   port: credentials.port,
