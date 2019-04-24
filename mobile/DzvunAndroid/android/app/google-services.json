@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "52388420253",
+    "firebase_url": "https://dzvunnotificationtest.firebaseio.com",
+    "project_id": "dzvunnotificationtest",
+    "storage_bucket": "dzvunnotificationtest.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:52388420253:android:b3c0410e922a4c1a",
+        "android_client_info": {
+          "package_name": "com.dzvunandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "52388420253-k7phkguror5u33t9d6dfkndal36jcbrf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAE6SSJWrJjSJX220BsvGqHDRqVBHXBw1w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "52388420253-k7phkguror5u33t9d6dfkndal36jcbrf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
