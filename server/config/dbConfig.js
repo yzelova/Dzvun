@@ -30,7 +30,7 @@ const sequelize = new Sequelize(credentials.dbname, credentials.username, creden
   },
   define: {
     timestamps: false
-  },
+  }
 
 });
 
