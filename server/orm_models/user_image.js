@@ -11,15 +11,10 @@ module.exports = (sequelize) => {
           field: 'user_id',
           type: Sequelize.INTEGER
         },
-        imageName: {
-          field: 'image_name',
-          type: Sequelize.STRING
+        image: {
+          field: 'image',
+          type: Sequelize.BLOB
         }, 
-        created_at: {
-            field: 'created_at',
-            type: 'TIMESTAMP',
-            defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
-        },
       },  {
         freezeTableName: true,
       });
