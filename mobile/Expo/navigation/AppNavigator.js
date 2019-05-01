@@ -2,11 +2,12 @@ import { createSwitchNavigator, createStackNavigator, createAppContainer } from 
 
 // Implementation of HomeScreen, OtherScreen, SignInScreen, AuthLoadingScreen
 // goes here.
-import SignInScreen from '../screens/SignInScreen';
+import LandingScreen from '../screens/LandingScreen';
 import AuthLoadingScreen from '../screens/AuthLoadingScreen';
 import MainTabNavigator from './MainTabNavigator';
+import LogInScreen from '../screens/SignInScreen';
 
-const AuthStack = createStackNavigator({ SignIn: SignInScreen });
+const AuthStack = createStackNavigator({ Landing: LandingScreen });
 
 
 export default createAppContainer(createSwitchNavigator(
@@ -14,6 +15,7 @@ export default createAppContainer(createSwitchNavigator(
     AuthLoading: AuthLoadingScreen,
     App: MainTabNavigator,
     Auth: AuthStack,
+    Login: LogInScreen
   },
   {
     initialRouteName: 'AuthLoading',
