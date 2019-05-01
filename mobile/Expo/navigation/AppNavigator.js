@@ -6,6 +6,7 @@ import LandingScreen from '../screens/LandingScreen';
 import AuthLoadingScreen from '../screens/AuthLoadingScreen';
 import MainTabNavigator from './MainTabNavigator';
 import LogInScreen from '../screens/SignInScreen';
+import SignUpScreen from '../screens/RegisterScreen';
 
 const AuthStack = createStackNavigator({ Landing: LandingScreen });
 
@@ -15,13 +16,18 @@ const LoginStack = createStackNavigator({
 }
 )
 
+const SignUpStack = createStackNavigator({
+  SignUp: { screen: SignUpScreen }
+}
+)
 
 export default createAppContainer(createSwitchNavigator(
   {
     AuthLoading: AuthLoadingScreen,
     App: MainTabNavigator,
     Auth: AuthStack,
-    Login: LoginStack
+    Login: LoginStack,
+    SignUp: SignUpStack
   },
   {
     initialRouteName: 'AuthLoading',

@@ -19,7 +19,7 @@ export default class LandingScreen extends React.Component {
     }
 
     onPressSignUp = () => {
-
+        this.props.navigation.navigate('SignUp');
     }
 
     render() {
@@ -46,7 +46,7 @@ export default class LandingScreen extends React.Component {
                     </View>
                     <View style={styles.textContainer}>
                         <Text style={styles.signUpText}>Нямате акаунт? Създайте нов сега!</Text>
-                        <TouchableOpacity style={styles.signUpButton}>
+                        <TouchableOpacity style={styles.signUpButton} onPress={this.onPressSignUp}>
                             <Text style={styles.signUpButtonText}>Регистрация</Text>
                         </TouchableOpacity>
                     </View>
@@ -87,9 +87,7 @@ const styles = StyleSheet.create({
     logInButton: {
         margin: 10,
         borderRadius: 7,
-        borderWidth: 1,
         padding: 10,
-        borderColor: '#fff',
         backgroundColor: '#4f6beb'
     },
     signUpText: {
