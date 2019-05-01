@@ -7,12 +7,24 @@ import {
   TextInput,
   View,
   Button,
+  Image,
+  TouchableOpacity
 } from 'react-native';
 import { showMessage } from "react-native-flash-message";
 import FlashMessage from "react-native-flash-message";
 
 
 export default class SignInScreen extends React.Component {
+
+  static navigationOptions = {
+    title: 'Влезте в своя акаунт',
+    headerStyle: {
+      backgroundColor: '#4f6beb',
+    },
+    headerTintColor: '#fff',
+
+  }
+
   constructor() {
     super();
     this.state = {
@@ -24,11 +36,19 @@ export default class SignInScreen extends React.Component {
   render() {
     return (
       <View style={styles.view}>
-        <Text style={styles.label}>Email:</Text>
-        <TextInput autoCapitalize='none' secureTextEntry={false} style={styles.usernamebox} onChangeText={(text) => this.setState({ email: text })} placeholder='Email' />
-        <Text style={styles.label}>Парола:</Text>
-        <TextInput autoCapitalize='none' secureTextEntry={true} style={styles.passwordbox} onChangeText={(text) => this.setState({ password: text })} placeholder='Парола' />
-        <Button title="Вход!" style={styles.signinbutton} onPress={this._signInAsync} />
+        <View style={styles.imageView}>
+          <Image
+            source={
+              require('../assets/images/dzvunicon.png')
+            }
+            style={styles.image}
+          />
+        </View>
+        <TextInput autoCapitalize='none' secureTextEntry={false} style={styles.box} onChangeText={(text) => this.setState({ email: text })} placeholder='Email' />
+        <TextInput autoCapitalize='none' secureTextEntry={true} style={styles.box} onChangeText={(text) => this.setState({ password: text })} placeholder='Парола' />
+        <TouchableOpacity style={styles.signInButton} onPress={this._signInAsync}>
+          <Text style={styles.signInText}>Вход</Text>
+        </TouchableOpacity>
         <FlashMessage position="top" />
       </View>
     );
@@ -67,29 +87,46 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     paddingLeft: 25,
     paddingRight: 25,
-    fontSize: 25
+    fontSize: 20
   },
-  usernamebox: {
-    padding: 50,
+  imageView: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  image: {
+    width: 64,
+    height: 64,
+    resizeMode: 'contain',
+    marginTop: 20
+  },
+  box: {
     paddingLeft: 25,
     paddingTop: 10,
-    paddingBottom: 0,
-    fontSize: 30,
-    borderBottomWidth: 0,
-    borderBottomColor: '#rgb(200,200,200)'
+    paddingBottom: 10,
+    marginTop: 50,
+    marginBottom: 0,
+    marginHorizontal: 10,
+    fontSize: 20,
+    borderRadius: 10,
+    borderWidth: 0.5,
+    borderColor: "#d6d7da"
   },
-  passwordbox: {
-    paddingBottom: 50,
-    paddingLeft: 25,
+  signInButton: {
     paddingTop: 10,
-    fontSize: 30,
-    borderBottomWidth: 0,
-    borderBottomColor: '#rgb(200,200,200)'
+    paddingBottom: 10,
+    marginTop: 50,
+    marginBottom: 0,
+    marginHorizontal: 10,
+    fontSize: 20,
+    borderRadius: 10,
+    borderWidth: 0.5,
+    borderColor: "#fff",
+    backgroundColor: "#4f6beb"
   },
-  signinbutton: {
-    paddingLeft: 30,
-    paddingRight: 30,
-    paddingTop: 30,
-    fontSize: 30
-  },
+  signInText: {
+    color: '#fff',
+    fontSize: 20,
+    textAlign: 'center'
+  }
 })

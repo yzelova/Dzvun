@@ -10,14 +10,21 @@ import LogInScreen from '../screens/SignInScreen';
 const AuthStack = createStackNavigator({ Landing: LandingScreen });
 
 
+const LoginStack = createStackNavigator({
+  Login: { screen: LogInScreen }
+}
+)
+
+
 export default createAppContainer(createSwitchNavigator(
   {
     AuthLoading: AuthLoadingScreen,
     App: MainTabNavigator,
     Auth: AuthStack,
-    Login: LogInScreen
+    Login: LoginStack
   },
   {
     initialRouteName: 'AuthLoading',
-  }
+  },
+
 ));

@@ -4,7 +4,8 @@ import {
     View,
     Image,
     Text,
-    TouchableOpacity
+    TouchableOpacity,
+    ImageBackground 
 } from 'react-native';
 
 export default class LandingScreen extends React.Component {
@@ -23,38 +24,44 @@ export default class LandingScreen extends React.Component {
 
     render() {
         return (
-            <View style={styles.view}>
-                <Image
-                    source={
-                        require('../assets/images/dzvun-logo.png')
-                    }
-                    style={
-                        styles.image
-                    }
-                />
-                <View style={styles.textContainer}>
-                    <Text style={styles.text}>Добре дошли в Dzvun!</Text>
-                    <Text style={styles.text}>За да продължите, моля влезте в акаунта си:</Text>
-                    <TouchableOpacity style={styles.logInButton} onPress ={this.onPressLogin}>
-                        <Text style={styles.logInText}>Вход</Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.textContainer}>
-                    <Text style={styles.signUpText}>Нямате акаунт? Създайте нов сега!</Text>
-                    <TouchableOpacity style={styles.signUpButton}>
-                        <Text style={styles.signUpButtonText}>Регистрация</Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
+                <ImageBackground 
+                source={
+                    require('../assets/images/landing-screen.png')
+                }
+                style={styles.backgroundImage}>
+                    <Image
+                        source={
+                            require('../assets/images/dzvun-logo-transparent.png')
+                        }
+                        style={
+                            styles.image
+                        }
+                    />
+                    <View style={styles.textContainer}>
+                        <Text style={styles.text}>Добре дошли в Dzvun!</Text>
+                        <Text style={styles.text}>За да продължите, моля влезте в своя акаунт:</Text>
+                        <TouchableOpacity style={styles.logInButton} onPress={this.onPressLogin}>
+                            <Text style={styles.logInText}>Вход</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.textContainer}>
+                        <Text style={styles.signUpText}>Нямате акаунт? Създайте нов сега!</Text>
+                        <TouchableOpacity style={styles.signUpButton}>
+                            <Text style={styles.signUpButtonText}>Регистрация</Text>
+                        </TouchableOpacity>
+                    </View>
+                </ImageBackground >
         )
     }
 }
 
 const styles = StyleSheet.create({
-    view: {
+    backgroundImage: {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
+        flex: 1,
+        resizeMode: 'cover',
     },
     image: {
         width: 200,
@@ -69,7 +76,8 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 20,
-        textAlign: 'center'
+        textAlign: 'center',
+        color: '#ffffff'
     },
     logInText: {
         fontSize: 20,
@@ -86,7 +94,8 @@ const styles = StyleSheet.create({
     },
     signUpText: {
         fontSize: 14,
-        textAlign: 'center'
+        textAlign: 'center',
+        color: '#ffffff'
     },
     signUpButton: {
         margin: 5
