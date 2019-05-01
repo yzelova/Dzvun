@@ -15,7 +15,10 @@ import {
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     title: "Начало",
-    //header: null,
+    headerStyle: {
+      backgroundColor: '#4f6beb',
+    },
+    headerTintColor: '#fff',
   };
 
   render() {
