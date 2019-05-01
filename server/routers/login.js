@@ -8,13 +8,15 @@ router.use(bodyParser.urlencoded({
 
 module.exports = (passport, csrfProtection) => {
 
-    router.post('/', csrfProtection, (req, res, next) => {
+    router.post('/', (req, res, next) => {
         passport.authenticate('local-login', function(err, user) {
             if(err) {
+                console.error(err);
                 return res.status(400).send();
             }
             req.logIn(user, (err) => {
                 if(err)  {
+                    console.error(err);
                     return res.status(400).send();
                 }
                 req.session.user = req.user;

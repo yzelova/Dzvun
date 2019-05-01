@@ -13,19 +13,9 @@ class Register extends Component {
         firstName: "",
         lastName: "",
         email: "",
-        password: "",
-        csrf: ""
+        password: ""
         };
         this.onChange = this.onChange.bind(this);
-    }
-
-    async componentDidMount() {
-        const res = await get('/get-sess-info/csrf');
-        if(res.ok){
-            const csrf = await res.json();
-            this.setState({csrf: csrf.csrfToken});
-        }
-        
     }
 
     onChange(event){
@@ -37,8 +27,7 @@ class Register extends Component {
                 firstName: this.state.firstName,
                 lastName: this.state.lastName,
                 email: this.state.email,
-                password: this.state.password},
-                this.state.csrf);
+                password: this.state.password});
         if(res.ok) {
             window.location.reload();
         }

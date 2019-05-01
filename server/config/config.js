@@ -3,7 +3,6 @@ const passport = require('passport')
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-const csrf = require('csurf');
 const cors = require('cors')
 
 module.exports = async (app) => {
@@ -19,8 +18,6 @@ module.exports = async (app) => {
     app.use(passport.initialize());
     app.use(passport.session());
 
-    const csrfProtection = csrf({cookie: true});
-    
     /*await sequelize.query('DROP TABLE user_image');
     
     await sequelize.query('DROP TABLE users');*/
@@ -52,6 +49,6 @@ module.exports = async (app) => {
     const ormModels = require('../orm_models/index')(sequelize);
     const models = require('../models/index')(ormModels);
     require('./passportConfig')(passport, ormModels, models);
-    require('./routersConfig')(app, ormModels, passport, csrfProtection);
+    require('./routersConfig')(app, ormModels, passport);
 
 }

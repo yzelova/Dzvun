@@ -8,7 +8,7 @@ router.use(bodyParser.urlencoded({
 
 module.exports = (csrfProtection) => {
 
-    router.get('/', csrfProtection, (req, res) => {
+    router.get('/', (req, res) => {
         req.logout();
         res.json();
     })

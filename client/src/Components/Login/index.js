@@ -14,20 +14,11 @@ class Login extends Component {
         this.state = {
         email: "",
         password: "",
-        csrf: null,
         loggedIn: false
         };
         this.onChange = this.onChange.bind(this);
     }
 
-    async componentDidMount() {
-        const res = await get('/get-sess-info/csrf');
-        if(res.ok) {
-            const csrf = (await res.json()).csrfToken;
-            this.setState({csrf});
-        }
-        
-    }
 
     onChange(event){
         this.setState({[event.target.name]:  event.target.value})
@@ -36,8 +27,7 @@ class Login extends Component {
     onSubmit = async () => {
         const res = await post('login', {
             email: this.state.email,
-            password: this.state.password},
-            this.state.csrf)
+            password: this.state.password})
         if(res.ok) {
             window.location.reload();
         }
