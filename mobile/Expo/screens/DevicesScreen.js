@@ -18,7 +18,10 @@ export default class DevicesScreen extends React.Component {
 
   static navigationOptions = {
     title: 'Устройства',
-    //header: null,
+    headerStyle: {
+      backgroundColor: '#4f6beb',
+    },
+    headerTintColor: '#fff',
   };
 
 
@@ -75,9 +78,9 @@ export default class DevicesScreen extends React.Component {
     const renderedImages = this.renderImages();
     this.state.device == 'False' ? this._LoadDevices() : null;
     return (
-      <ScrollView style={styles.container}>
+      <View style={styles.container}>
         {this.state.device == 'True' ?
-          <View style={styles.screen}>
+          <ScrollView style={styles.screen}>
             <Text style={styles.text}>
               В момента имате 1 свързано устройство и то показва:
             </Text>
@@ -87,29 +90,36 @@ export default class DevicesScreen extends React.Component {
                 {renderedImages}
               </View>
             }
-          </View>
+          </ScrollView>
           :
           <View style={styles.screen}>
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('WiFiSetup')}>
-              <View style={styles.box}>
-                {/* Go ahead and delete ExpoLinksView and replace it with your
-           * content, we just wanted to provide you with some helpful links */}
-                <Image source={require('../assets/images/plus.png')} style={{ width: 250, height: 250, paddingBottom:20 }} />
-              </View>
-            </TouchableOpacity>
             <View>
               <Text style={styles.text}>
-                В момента нямате свързани устройства
+                В момента нямате свързани устройства.
               </Text>
             </View>
+            <TouchableOpacity style={styles.addButton} onPress={() => this.props.navigation.navigate('WiFiSetup')}>
+              <Text style={{fontSize: 50, textAlign: 'center', color: '#fff'}}>+</Text>
+            </TouchableOpacity>
           </View>
         }
-      </ScrollView>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  addButton: {
+    alignSelf: 'flex-end',
+    bottom: 0,
+    position: 'absolute',
+    backgroundColor: '#4f6beb',
+    borderRadius: 35,
+    width: 70,
+    height: 70,
+    marginRight: 10,
+    marginBottom: 10
+  },
   container: {
     marginTop: 20,
     flex: 1,
@@ -119,7 +129,8 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    //justifyContent: 'center',
+    flexDirection: 'column'
   },
   box: {
     paddingTop: 30,
@@ -138,8 +149,10 @@ const styles = StyleSheet.create({
     borderColor: '#BBBBBB'
   },
   text: {
+    marginTop: 100,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 10,
+    fontSize: 16
   }
 });
