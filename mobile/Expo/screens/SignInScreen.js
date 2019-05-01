@@ -8,7 +8,7 @@ import {
   View,
   Button,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
 import { showMessage } from "react-native-flash-message";
 import FlashMessage from "react-native-flash-message";
@@ -23,6 +23,10 @@ export default class SignInScreen extends React.Component {
     },
     headerTintColor: '#fff',
 
+  }
+
+  onPressSignUp = () => {
+    this.props.navigation.navigate('SignUp');
   }
 
   constructor() {
@@ -50,6 +54,12 @@ export default class SignInScreen extends React.Component {
           <Text style={styles.signInText}>Вход</Text>
         </TouchableOpacity>
         <FlashMessage position="top" />
+        <View style={styles.textContainer}>
+          <Text style={styles.signUpText}>Нямате акаунт? Създайте нов сега!</Text>
+          <TouchableOpacity style={styles.signUpButton} onPress={this.onPressSignUp}>
+            <Text style={styles.signUpButtonText}>Регистрация</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -82,13 +92,6 @@ export default class SignInScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  label: {
-    paddingTop: 80,
-    paddingBottom: 10,
-    paddingLeft: 25,
-    paddingRight: 25,
-    fontSize: 20
-  },
   imageView: {
     flexDirection: 'column',
     justifyContent: 'center',
@@ -123,6 +126,23 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     borderColor: "#fff",
     backgroundColor: "#4f6beb"
+  },
+  textContainer: {
+    marginHorizontal: 50,
+    marginTop: 20
+  },
+  signUpText: {
+    fontSize: 14,
+    textAlign: 'center',
+    color: '#000000'
+  },
+  signUpButton: {
+    margin: 5
+  },
+  signUpButtonText: {
+    fontSize: 14,
+    color: '#4f6beb',
+    textAlign: 'center'
   },
   signInText: {
     color: '#fff',
