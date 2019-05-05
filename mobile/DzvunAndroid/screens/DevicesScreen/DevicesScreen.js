@@ -1,6 +1,7 @@
 import React from 'react';
 import { ScrollView, View, StyleSheet, Image, Text, TouchableOpacity, AsyncStorage } from 'react-native';
 import { Buffer } from 'buffer';
+import styles from './styles';
 
 export default class DevicesScreen extends React.Component {
   constructor(props) {
@@ -94,7 +95,7 @@ export default class DevicesScreen extends React.Component {
               <View style={styles.box}>
                 {/* Go ahead and delete ExpoLinksView and replace it with your
            * content, we just wanted to provide you with some helpful links */}
-                <Image source={require('../assets/images/plus.png')} style={{ width: 250, height: 250, paddingBottom:20 }} />
+                <Image source={require('../../assets/images/plus.png')} style={{ width: 250, height: 250, paddingBottom:20 }} />
               </View>
             </TouchableOpacity>
             <View>
@@ -108,38 +109,3 @@ export default class DevicesScreen extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    marginTop: 20,
-    flex: 1,
-    paddingTop: 15,
-    backgroundColor: '#fff',
-  },
-  screen: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  box: {
-    paddingTop: 30,
-    width: '70%',
-    height: '90%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 0,
-    borderColor: '#BBBBBB'
-  },
-  boxItems: {
-    alignItems: 'flex-end',
-    marginLeft: 'auto',
-    justifyContent: 'center',
-    borderWidth: 0,
-    borderColor: '#BBBBBB'
-  },
-  text: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 10,
-  }
-});

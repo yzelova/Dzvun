@@ -2,6 +2,10 @@ const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser')
 const multer = require('multer');
+const FCM = require('fcm-call');
+
+const serverKey = 'AIzaSyAEtNKzCCgo53pg-027l2chvaD66QXtVNk'; 
+const referenceKey = 'd-m_R5nvBe0:APA91bEN7xBJK8ZnmJ0rRZny_WTwMPo7D0_t1nIg2e4Q7wrAOZeSdhFgPxjXKx31g2Hqzd8S0SE1TJifRvLNvvCFoiMdMWpzFoIIVaMliVEdSPEmjgVcP3BWXKGUJl-OWgIsKGaxQaWk'; //Device Key   
 
 const storage = multer.diskStorage({
     destination: "./uploads/",
@@ -24,6 +28,9 @@ module.exports = (ormModels) => {
         const userId = testUserId;
         await UserImage.create({userId, imageName})
         res.status(200).send('Image saved');
+        let title = 'New Guest';
+        let message = 'Has arrived at the door';
+        FCM.FCM(serverKey, referenceKey, title, message);
     })
     return router;
 }
