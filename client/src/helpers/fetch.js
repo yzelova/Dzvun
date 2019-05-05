@@ -4,8 +4,7 @@ async function post(path, content, token){
         method: 'POST',
         credentials: 'same-origin',
         headers: {
-            'Content-Type': 'application/json',
-            'CSRF-Token': token
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify(content)
     })

@@ -23,7 +23,7 @@ class Profile extends Component {
             <Container>
                 <Divider/>
                 <Header as='h1'>Привет, {firstName} {lastName}</Header>
-                <Header as='h3'>Твоите устройства: </Header>
+                <Header as='h3'>Вашите устройства: </Header>
                 <Image src={bellImg} centered />
             </Container>
         )

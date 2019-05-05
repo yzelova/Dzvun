@@ -3,7 +3,6 @@ const passport = require('passport')
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-const csrf = require('csurf');
 const cors = require('cors')
 
 module.exports = async (app) => {
@@ -19,8 +18,12 @@ module.exports = async (app) => {
     app.use(passport.initialize());
     app.use(passport.session());
 
-    const csrfProtection = csrf({cookie: true});
+    /*await sequelize.query('DROP TABLE user_image');
     
+    await sequelize.query('DROP TABLE users');*/
+    
+    
+
     await sequelize.query(`CREATE TABLE IF NOT EXISTS users
     (
         id serial NOT NULL,
@@ -35,8 +38,7 @@ module.exports = async (app) => {
     (
         id serial NOT NULL,
         user_id bigint NOT NULL,
-        image_name text COLLATE pg_catalog."default" NOT NULL,
-        created_at timestamp with time zone,
+        image bytea NOT NULL,
         CONSTRAINT user_image_pkey PRIMARY KEY (id),
         CONSTRAINT user_image_user_id_fkey FOREIGN KEY (user_id)
             REFERENCES users (id) MATCH SIMPLE
@@ -47,6 +49,6 @@ module.exports = async (app) => {
     const ormModels = require('../orm_models/index')(sequelize);
     const models = require('../models/index')(ormModels);
     require('./passportConfig')(passport, ormModels, models);
-    require('./routersConfig')(app, ormModels, passport, csrfProtection);
+    require('./routersConfig')(app, ormModels, passport);
 
 }

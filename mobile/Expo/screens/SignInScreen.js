@@ -6,84 +6,147 @@ import {
   StyleSheet,
   TextInput,
   View,
-  Button
+  Button,
+  Image,
+  TouchableOpacity,
 } from 'react-native';
+import { showMessage } from "react-native-flash-message";
+import FlashMessage from "react-native-flash-message";
 
 
 export default class SignInScreen extends React.Component {
+
   static navigationOptions = {
-    title: 'Моля влезте в акаунта си',
-  };
+    title: 'Влезте в своя акаунт',
+    headerStyle: {
+      backgroundColor: '#4f6beb',
+    },
+    headerTintColor: '#fff',
+
+  }
+
+  onPressSignUp = () => {
+    this.props.navigation.navigate('SignUp');
+  }
+
+  constructor() {
+    super();
+    this.state = {
+      email: "",
+      password: "",
+    }
+  }
 
   render() {
     return (
-      <View>
-        <Text style={styles.label}>Потребителско Име:</Text>
-        <TextInput secureTextEntry={false} style={styles.usernamebox} placeholder='Username' />
-        <Text style={styles.label}>Парола:</Text>
-        <TextInput secureTextEntry={true} style={styles.passwordbox} placeholder='Password' />
-        <Button title="Вход!"  style={styles.signinbutton} onPress={this._signInAsync} />
+      <View style={styles.view}>
+        <View style={styles.imageView}>
+          <Image
+            source={
+              require('../assets/images/dzvunicon.png')
+            }
+            style={styles.image}
+          />
+        </View>
+        <TextInput autoCapitalize='none' secureTextEntry={false} style={styles.box} onChangeText={(text) => this.setState({ email: text })} placeholder='Email' />
+        <TextInput autoCapitalize='none' secureTextEntry={true} style={styles.box} onChangeText={(text) => this.setState({ password: text })} placeholder='Парола' />
+        <TouchableOpacity style={styles.signInButton} onPress={this._signInAsync}>
+          <Text style={styles.signInText}>Вход</Text>
+        </TouchableOpacity>
+        <FlashMessage position="top" />
+        <View style={styles.textContainer}>
+          <Text style={styles.signUpText}>Нямате акаунт? Създайте нов сега!</Text>
+          <TouchableOpacity style={styles.signUpButton} onPress={this.onPressSignUp}>
+            <Text style={styles.signUpButtonText}>Регистрация</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
 
   _signInAsync = async () => {
-    await AsyncStorage.setItem('userToken', 'abc');
-    await AsyncStorage.setItem('Device', 'False');
-    this.props.navigation.navigate('App');
+    const res = await fetch('https://dzvun-server.cfapps.eu10.hana.ondemand.com/login', {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({
+        email: this.state.email,
+        password: this.state.password
+      })
+    })
+    if (res.ok) {
+      await AsyncStorage.setItem('userToken', 'abc');
+      await AsyncStorage.setItem('Device', 'False');
+      this.props.navigation.navigate('App');
+    }
+    else {
+      showMessage({
+        message: "Грешна парола или email!",
+        type: "danger",
+      });
+    }
   };
 }
-
-class HomeScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Welcome to the app!',
-  };
-
-  render() {
-    return (
-      <View>
-        <Button title="Show me more of the app" onPress={this._showMoreApp} />
-        <Button title="Actually, sign me out :)" onPress={this._signOutAsync} />
-      </View>
-    );
-  }
-
-  _showMoreApp = () => {
-    this.props.navigation.navigate('Other');
-  };
-
-  _signOutAsync = async () => {
-    await AsyncStorage.clear();
-    this.props.navigation.navigate('Auth');
-  };
-}
-
 
 const styles = StyleSheet.create({
-  label:{
-    padding:20,
-    fontSize:25
+  imageView: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  usernamebox: {
-    padding: 50,
-    paddingLeft:25,
-    paddingTop:10,
-    fontSize: 30,
-    borderBottomWidth:0,
-    borderBottomColor:'#rgb(200,200,200)'
+  image: {
+    width: 64,
+    height: 64,
+    resizeMode: 'contain',
+    marginTop: 20
   },
-  passwordbox: {
-    paddingBottom: 50,
-    paddingLeft:25,
-    paddingTop:10,
-    fontSize: 30,
-    borderBottomWidth:0,
-    borderBottomColor:'#rgb(200,200,200)'
+  box: {
+    paddingLeft: 25,
+    paddingTop: 10,
+    paddingBottom: 10,
+    marginTop: 50,
+    marginBottom: 0,
+    marginHorizontal: 10,
+    fontSize: 20,
+    borderRadius: 10,
+    borderWidth: 0.5,
+    borderColor: "#d6d7da"
   },
-  signinbutton: {
-    paddingLeft:30,
-    paddingRight:30,
-    paddingTop:30,
-    fontSize:30
+  signInButton: {
+    paddingTop: 10,
+    paddingBottom: 10,
+    marginTop: 50,
+    marginBottom: 0,
+    marginHorizontal: 10,
+    fontSize: 20,
+    borderRadius: 10,
+    borderWidth: 0.5,
+    borderColor: "#fff",
+    backgroundColor: "#4f6beb"
   },
+  textContainer: {
+    marginHorizontal: 50,
+    marginTop: 20
+  },
+  signUpText: {
+    fontSize: 14,
+    textAlign: 'center',
+    color: '#000000'
+  },
+  signUpButton: {
+    margin: 5
+  },
+  signUpButtonText: {
+    fontSize: 14,
+    color: '#4f6beb',
+    textAlign: 'center'
+  },
+  signInText: {
+    color: '#fff',
+    fontSize: 20,
+    textAlign: 'center'
+  }
 })

@@ -12,8 +12,5 @@ module.exports = (csrfProtection) => {
         if(user) res.json({user})
         else res.status(403).send("not logged")
     })
-    router.get('/csrf', csrfProtection, (req, res) => {
-        res.json({csrfToken: req.csrfToken()});
-    })
     return router;
 }

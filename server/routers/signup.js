@@ -8,7 +8,7 @@ router.use(bodyParser.urlencoded({
 
 module.exports = (passport, csrfProtection) => {
 
-    router.post('/', csrfProtection, (req, res, next) => {
+    router.post('/', (req, res, next) => {
         passport.authenticate('local-signup', function(err, user) {
             if(err) {
                 return res.status(400).send();

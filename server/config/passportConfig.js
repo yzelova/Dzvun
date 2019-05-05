@@ -6,6 +6,7 @@ module.exports = (passport, ormModels, models) => {
     const User = models.User;
 
     passport.serializeUser((user, done) => {
+        console.log(user)
         if(!user) done(null, false)
         else done(null, user.id);
     });
