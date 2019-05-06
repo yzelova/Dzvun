@@ -2,8 +2,8 @@ import { createSwitchNavigator, createStackNavigator, createAppContainer } from 
 
 // Implementation of HomeScreen, OtherScreen, SignInScreen, AuthLoadingScreen
 // goes here.
-import SignInScreen from '../screens/SignInScreen';
-import AuthLoadingScreen from '../screens/AuthLoadingScreen';
+import SignInScreen from '../screens/SignInScreen/SignInScreen';
+import AuthLoadingScreen from '../screens/AuthLoadingScreen/AuthLoadingScreen';
 import MainTabNavigator from './MainTabNavigator';
 
 const AuthStack = createStackNavigator({ SignIn: SignInScreen });
