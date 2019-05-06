@@ -1,0 +1,12 @@
+.login-page {
+    background-image: url('../../images/bg.jpg')
+}
+
+.login-form {
+    margin-top: 60px!important;
+    color: white!important
+}
+
+.login-logo {
+    width: 30%
+}
