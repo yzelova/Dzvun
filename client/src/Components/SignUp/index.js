@@ -3,7 +3,6 @@ import { Segment, Form, Container, Button } from 'semantic-ui-react';
 
 const req = require('../../helpers/fetch');
 const post = req.post;
-const get = req.get;
 
 class Register extends Component {
 

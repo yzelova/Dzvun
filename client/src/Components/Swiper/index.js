@@ -5,6 +5,7 @@ import {Image} from 'semantic-ui-react';
 
 import './index.css'
 import ringImage from '../../public/images/ring-image.jpg';
+import secondImage from '../../public/images/2.png'
 
 
 export default class Demo extends Component {
@@ -50,11 +51,12 @@ export default class Demo extends Component {
             swiperOptions={{scrollbarHide: false}}
             {...this.state.options}
           >
-            {(new Array(this.state.slideCount).fill(null).map((_, i) => (
-              <Slide className="Demo-swiper__slide" key={i}>
+              <Slide className="Demo-swiper__slide" key={1}>
                 <Image src={ringImage}/>
               </Slide>
-            )))}
+              <Slide className="Demo-swiper__slide" key={2}>
+                <Image src={secondImage}/>
+              </Slide>
           </Swiper>
         </div>
       </div>
