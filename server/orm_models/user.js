@@ -23,6 +23,10 @@ module.exports = (sequelize) => {
           field: 'password',
           type: Sequelize.STRING
         },
+        isAdmin: {
+          field: 'is_admin',
+          type: Sequelize.BOOLEAN
+        }
       },  {
         timestamps: false,
         freezeTableName: true,
