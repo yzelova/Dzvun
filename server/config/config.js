@@ -31,8 +31,13 @@ module.exports = async (app) => {
         last_name text COLLATE pg_catalog."default",
         email text COLLATE pg_catalog."default" NOT NULL,
         password text COLLATE pg_catalog."default" NOT NULL,
+        is_admin boolean NOT NULL DEFAULT false,
+        fcm_token text COLLATE pg_catalog."default",
         CONSTRAINT users_pkey PRIMARY KEY (id)
     )`);
+
+    /*await sequelize.query(`INSERT INTO users (id, first_name, last_name, email, password, is_admin)
+                            VALUES (DEFAULT, null, null, admin, $2b$10$dSli1NI7oFA7.zhxt9WhN./FCUQWehB//28HxGb2Z6z9m08qS42b6, true)`);*/
 
     await sequelize.query(`CREATE TABLE IF NOT EXISTS user_image
     (

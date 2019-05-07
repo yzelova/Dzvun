@@ -22,7 +22,7 @@ class ReactUploadImage extends React.Component {
                 'Access-Control-Allow-Origin': '*'
             }
         };
-        axios.post("https://dzvun-server.cfapps.eu10.hana.ondemand.com/uploadImage",formData,config)
+        axios.post("http://192.168.1.202:5000/uploadImage",formData,config)
             .then((response) => {
                 alert("The file is successfully uploaded");
             }).catch((error) => {

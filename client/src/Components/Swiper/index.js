@@ -4,7 +4,7 @@ import { Swiper, Slide } from 'react-dynamic-swiper';
 import {Image} from 'semantic-ui-react';
 
 import './index.css'
-import ringImage from '../../public/images/ring-image.jpg';
+import firstImage from '../../public/images/1.png'
 import secondImage from '../../public/images/2.png'
 
 
@@ -52,7 +52,7 @@ export default class Demo extends Component {
             {...this.state.options}
           >
               <Slide className="Demo-swiper__slide" key={1}>
-                <Image src={ringImage}/>
+                <Image src={firstImage}/>
               </Slide>
               <Slide className="Demo-swiper__slide" key={2}>
                 <Image src={secondImage}/>

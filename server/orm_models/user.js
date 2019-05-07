@@ -26,6 +26,10 @@ module.exports = (sequelize) => {
         isAdmin: {
           field: 'is_admin',
           type: Sequelize.BOOLEAN
+        },
+        fcmToken: {
+          field: 'fcm_token',
+          type: Sequelize.STRING
         }
       },  {
         timestamps: false,
