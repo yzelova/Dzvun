@@ -18,12 +18,6 @@ module.exports = async (app) => {
     app.use(passport.initialize());
     app.use(passport.session());
 
-    /*await sequelize.query('DROP TABLE user_image');
-    
-    await sequelize.query('DROP TABLE users');*/
-    
-    
-
     await sequelize.query(`CREATE TABLE IF NOT EXISTS users
     (
         id serial NOT NULL,
@@ -36,9 +30,6 @@ module.exports = async (app) => {
         CONSTRAINT users_pkey PRIMARY KEY (id)
     )`);
 
-    /*await sequelize.query(`INSERT INTO users (id, first_name, last_name, email, password, is_admin)
-                            VALUES (DEFAULT, null, null, admin, $2b$10$dSli1NI7oFA7.zhxt9WhN./FCUQWehB//28HxGb2Z6z9m08qS42b6, true)`);*/
-
     await sequelize.query(`CREATE TABLE IF NOT EXISTS user_image
     (
         id serial NOT NULL,
@@ -50,6 +41,13 @@ module.exports = async (app) => {
             ON UPDATE NO ACTION
             ON DELETE NO ACTION
     )`);
+
+    await sequelize.query(`CREATE TABLE IF NOT EXISTS devices
+    (
+        id serial NOT NULL,
+        device_address text COLLATE pg_catalog."default" NOT NULL,
+        CONSTRAINT devices_pkey PRIMARY KEY (id)
+    )`)
 
     const ormModels = require('../orm_models/index')(sequelize);
     const models = require('../models/index')(ormModels);

@@ -19,7 +19,10 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "proxy": "http://localhost:5000",
+  "engines": {
+    "node": ">=8.10"
+  },
+  "proxy": "https://dzvunserver.cfapps.eu10.hana.ondemand.com/",
   "browserslist": [
       ">0.2%",
       "not dead",
