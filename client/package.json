@@ -33,5 +33,5 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "proxy": "https://dzvun-server.cfapps.eu10.hana.ondemand.com/"
+  "proxy": "https://dzvunserver.cfapps.eu10.hana.ondemand.com/"
 }
