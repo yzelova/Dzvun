@@ -41,12 +41,19 @@ module.exports = (passport, ormModels, models) => {
   passport.use('local-login', new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password',
+    passReqToCallback: true
   },
-    async function (email, password, done) {
+    async function (req, email, password, done) {
+      const fcm = req.body.token;
       const user = await ormUser.findOne({ where: { email: email } });
       if (user) {
         const comp = await User.validPassword(password, user.password);
         if (!comp) return done(null, false, "Incorrect password");
+        await ormUser.update({
+          fcmToken: fcm
+        }, {
+          where: {id: user.id}
+        })
         return done(null, user);
       } else {
         return done(null, false, "No such email found")
@@ -62,11 +69,12 @@ module.exports = (passport, ormModels, models) => {
     async function (req, email, password, done) {
       const firstName = req.body.firstName;
       const lastName = req.body.lastName;
+      const fcm = req.body.token;
       const user = await ormUser.findOne({ where: { email: email } });
       if (user) {
         return done(null, false, "User already exists");
       } else {
-        const user = await User.createUser(firstName, lastName, email, password);
+        const user = await User.createUser(firstName, lastName, email, password, fcm);
         if (user) {
           return done(null, user);
         } else {
