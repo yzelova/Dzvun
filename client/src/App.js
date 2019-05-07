@@ -7,6 +7,7 @@ import Footer from './Components/Footer';
 import Profile from './Components/Profile';
 import ReactUploadImage from './Components/ReactUploadImage';
 import Timeline from './Components/Timeline';
+import Shop from './Components/Shop';
 import { Route, Switch, Redirect } from 'react-router-dom'
 
 import './App.css';
@@ -55,6 +56,7 @@ class App extends Component {
                 <Route path='/timeline' render={() => (isAuth ? (<Timeline />) : (<Redirect to='/login' />))} />
                 <Route path='/profile' render={() => (isAuth ? (<Profile user={user} />) : (<Redirect to='/login' />))} />
                 <Route path='/upload' component={ReactUploadImage} />
+                <Route path='/shop' component={Shop} />
               </Switch>
               <Footer />
             </div>

@@ -10,7 +10,7 @@ import {
 import Swiper from '../Swiper';
 import door from '../../public/images/door.png'
 import dzvun from '../../public/images/3.png'
-
+import { Link } from 'react-router-dom';
 import './index.css';
 
 
@@ -26,7 +26,7 @@ class Body extends Component {
               <Image className="grid-col-image">
                 <img src={door} />
                 <Header style={{ position: 'absolute', bottom: 0, right: 0 }} as='h2' inverted color='white' className='shop-now-header'>Защитете дома си. Сега.</Header>
-                <Button style={{ position: 'absolute', bottom: 0, right: 0 }} className='show-now-btn' color='green' icon labelPosition='right'>
+                <Button as={Link} to={'/shop'} style={{ position: 'absolute', bottom: 0, right: 0 }} className='show-now-btn' color='green' icon labelPosition='right'>
                   Поръчай
                 <Icon name='right arrow' />
                 </Button>

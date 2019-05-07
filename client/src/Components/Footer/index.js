@@ -13,7 +13,7 @@ class Body extends Component {
         return (
             <div>
                 <Segment className="footer-div">
-                    <Grid columns={3}>
+                    <Grid columns={2}>
                         <Grid.Row>
                             <Grid.Column className="footer-grid-col" >
                                 <Header className="footer-group-header"> За нас </Header>
@@ -21,13 +21,10 @@ class Body extends Component {
                             <Grid.Column className="footer-grid-col">
                                 <Header className="footer-group-header">Поддръжка</Header>
                             </Grid.Column>
-                            <Grid.Column className="footer-grid-col">
-                                <Header className="footer-group-header"> Последвайте ни </Header>
-                            </Grid.Column>
                         </Grid.Row>
                     </Grid>
                     <div>
-                        <Grid columns={3}>
+                        <Grid columns={2}>
                             <Grid.Row>
                                 <Grid.Column className="footer-grid-col" >
                                     <Container className="footer-group">
@@ -47,7 +44,7 @@ class Body extends Component {
                                     <Container className="footer-group">
                                     <Grid columns={2}>
                                         <Grid.Column >
-                                            <Container className="footer-group-text"> Характеристи и изисквания </Container>
+                                            <Container className="footer-group-text"> Характеристики и изисквания </Container>
                                             <Container className="footer-group-text"> Закупуване на устройство </Container>
                                         </Grid.Column>
                                         <Grid.Column>
@@ -56,14 +53,6 @@ class Body extends Component {
                                         </Grid.Column>
                                     </Grid>
                                         
-                                    </Container>
-                                </Grid.Column>
-                                <Grid.Column className="footer-grid-col">
-                                    <Container className="footer-group">
-                                        <Grid.Column>
-                                            <Container className="footer-group-text"> <Icon className='facebook'/> Dzvun </Container>
-                                            <Container className="footer-group-text"> <Icon className='twitter icon'/> @dzvun </Container>
-                                        </Grid.Column>
                                     </Container>
                                 </Grid.Column>
                             </Grid.Row>

@@ -178,32 +178,6 @@ class DesktopHeader extends Component {
                                     <Menu.Item as={Link} to='/' style={{ padding: '0em 0em' }}  >
                                         <Image src={logo} className='logo-image' />
                                     </Menu.Item>
-                                    <Menu.Item position="right">
-                                        <Popup
-                                            trigger={
-                                                <Button className="dekstopheader-menu-button">Всички продукти</Button>
-                                            }
-                                            content={
-                                                <ProductsDropdown className="all-products-popup"/>
-                                            }
-                                            position="bottom center"
-                                            basic
-                                            on="click"
-                                        />
-        
-                                        <Button className="dekstopheader-menu-button">Планове</Button>
-                                        <Popup
-                                            position="bottom left"
-                                            trigger={
-                                                <Button className="dekstopheader-menu-button">Помощ</Button>
-                                            }
-                                            content={
-                                                <HelpDropdown/>
-                                            }
-                                            basic
-                                            on="click"
-                                        />
-                                    </Menu.Item>
                                     <Menu.Item position='right' style={{ padding: '1em 0em' }}>
                                         <Popup
                                             trigger={
