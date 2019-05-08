@@ -46,21 +46,28 @@ class App extends Component {
 
     } else {
       return (
-          <div className="page-div">
-            <div className="body-div">
-              <Head user={user} authenticating={authenticating} />
-              <Switch>
-                <Route exact path='/' component={Body} />
-                <Route path='/signup' render={() => (isAuth ? (<Redirect to='/timeline' />) : (<SignUp />))} />
-                <Route path='/login' render={() => (isAuth ? (<Redirect to='/timeline' />) : (<Login />))} />
-                <Route path='/timeline' render={() => (isAuth ? (<Timeline />) : (<Redirect to='/login' />))} />
-                <Route path='/profile' render={() => (isAuth ? (<Profile user={user} />) : (<Redirect to='/login' />))} />
-                <Route path='/upload' component={ReactUploadImage} />
-                <Route path='/shop' component={Shop} />
-              </Switch>
-              <Footer />
+        <Switch>
+          <Switch>
+            <div className="page-div">
+              <div className="body-div">
+                <Head user={user} authenticating={authenticating} />
+                <div className='content'>
+                  <Switch>
+                  <Route exact path='/' component={Body} />
+                  <Route path='/signup' render={() => (isAuth ? (<Redirect to='/timeline' />) : (<SignUp />))} />
+                  <Route path='/login' render={() => (isAuth ? (<Redirect to='/timeline' />) : (<Login />))} />
+                  <Route path='/timeline' render={() => (isAuth ? (<Timeline />) : (<Redirect to='/login' />))} />
+                  <Route path='/profile' render={() => (isAuth ? (<Profile user={user} />) : (<Redirect to='/login' />))} />
+                  <Route path='/upload' component={ReactUploadImage} />
+                  <Route path='/shop' component={Shop} />
+                </Switch>
+                </div>
+                <Footer />
+              </div>
             </div>
-          </div>
+          </Switch>
+        </Switch>
+
       );
     }
   }

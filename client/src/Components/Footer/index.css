@@ -3,6 +3,10 @@
     background-color:#f3f3f3!important;
     height:250px!important;
     padding:25px!important;
+    position: absolute!important;
+    bottom: 0;
+    left:0;
+    right:0;
 }
 
 .footer-group{
@@ -24,4 +28,5 @@
 .footer-group-text{
     font-weight: 300!important;
     color:#525252;
+    margin-left: 0px!important;
 }

@@ -4,7 +4,6 @@ import {
     Grid,
     Header,
     Button,
-    Icon,
     List,
     Segment
 }
