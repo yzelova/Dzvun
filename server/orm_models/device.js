@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 module.exports = (sequelize) => {
-    const User = sequelize.define('devices', {
+    const Device = sequelize.define('devices', {
         id: {
             field: 'id',
             type: Sequelize.INTEGER,
@@ -15,5 +15,12 @@ module.exports = (sequelize) => {
             timestamps: false,
             freezeTableName: true,
         });
-    return User;
+    Device.associate = (models) => {
+        Device.belongsToMany(models.Users, {
+            through: 'UserDevice',
+            as: 'users',
+            foreignKey: 'deviceId'
+        });
+    };
+    return Device;
 }

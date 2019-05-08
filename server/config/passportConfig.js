@@ -49,11 +49,13 @@ module.exports = (passport, ormModels, models) => {
       if (user) {
         const comp = await User.validPassword(password, user.password);
         if (!comp) return done(null, false, "Incorrect password");
-        await ormUser.update({
-          fcmToken: fcm
-        }, {
-          where: {id: user.id}
-        })
+        if (fcm) {
+          await ormUser.update({
+            fcmToken: fcm
+          }, {
+              where: { id: user.id }
+            })
+        }
         return done(null, user);
       } else {
         return done(null, false, "No such email found")
