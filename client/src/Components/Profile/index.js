@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Container, Header, Divider, Image, Label} from 'semantic-ui-react'
+import {Container, Header, Divider, Image} from 'semantic-ui-react'
 import bellImg from '../../public/images/bell.png';
 
 class Profile extends Component {

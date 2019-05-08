@@ -13,16 +13,10 @@ module.exports = async (app) => {
         resave: true,
         saveUninitialized: true
     }));
-    app.use(bodyParser.json({limit: '50mb'}));
-    app.use(bodyParser.urlencoded({limit: '50mb', extended: true }));
+    app.use(bodyParser.json({ limit: '50mb' }));
+    app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
     app.use(passport.initialize());
     app.use(passport.session());
-
-    /*await sequelize.query('DROP TABLE user_image');
-    
-    await sequelize.query('DROP TABLE users');*/
-    
-    
 
     await sequelize.query(`CREATE TABLE IF NOT EXISTS users
     (
@@ -31,6 +25,8 @@ module.exports = async (app) => {
         last_name text COLLATE pg_catalog."default",
         email text COLLATE pg_catalog."default" NOT NULL,
         password text COLLATE pg_catalog."default" NOT NULL,
+        is_admin boolean NOT NULL DEFAULT false,
+        fcm_token text COLLATE pg_catalog."default",
         CONSTRAINT users_pkey PRIMARY KEY (id)
     )`);
 
@@ -45,6 +41,31 @@ module.exports = async (app) => {
             ON UPDATE NO ACTION
             ON DELETE NO ACTION
     )`);
+
+    await sequelize.query(`CREATE TABLE IF NOT EXISTS devices
+    (
+        id serial NOT NULL,
+        device_address text COLLATE pg_catalog."default" NOT NULL,
+        CONSTRAINT devices_pkey PRIMARY KEY (id)
+    )`)
+
+    await sequelize.query(`CREATE TABLE IF NOT EXISTS user_device
+    (
+        id serial NOT NULL,
+        user_id bigint NOT NULL,
+        device_id bigint NOT NULL,
+        CONSTRAINT user_device_pkey PRIMARY KEY (id),
+        CONSTRAINT user_device_device_id_fkey FOREIGN KEY (device_id)
+            REFERENCES devices (id) MATCH SIMPLE
+            ON UPDATE NO ACTION
+            ON DELETE NO ACTION,
+        CONSTRAINT user_device_user_id_fkey FOREIGN KEY (user_id)
+            REFERENCES users (id) MATCH SIMPLE
+            ON UPDATE NO ACTION
+            ON DELETE NO ACTION
+    )`)
+
+
 
     const ormModels = require('../orm_models/index')(sequelize);
     const models = require('../models/index')(ormModels);

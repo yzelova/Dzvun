@@ -6,10 +6,28 @@
     max-width: 1500px;
     margin-right:auto!important;
     margin-left:auto!important;
-    margin-left:14px;
-    margin-right:14px;
 }
 
 .picture-menu-col{
     padding:0 !important;
+}
+
+.show-now-btn{
+    margin-right: 25%!important;
+    margin-bottom: 15%!important
+}
+
+.shop-now-header{
+    margin-right: 15%!important;
+    margin-bottom: 25%!important
+}
+
+.download-header{
+    margin-left: 1%!important;
+    margin-bottom: 22%!important
+}
+
+.download-btn{
+    margin-left: 17%!important;
+    margin-bottom: 15%!important
 }

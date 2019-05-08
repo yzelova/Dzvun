@@ -7,6 +7,7 @@ import Footer from './Components/Footer';
 import Profile from './Components/Profile';
 import ReactUploadImage from './Components/ReactUploadImage';
 import Timeline from './Components/Timeline';
+import Shop from './Components/Shop';
 import { Route, Switch, Redirect } from 'react-router-dom'
 
 import './App.css';
@@ -25,11 +26,11 @@ class App extends Component {
 
   async componentDidMount() {
     const res = (await get('get-sess-info/user'));
-    if(res.ok){
-        const user = (await res.json()).user; 
-        this.setState({isAuth: true, user: user, authenticating: false});
+    if (res.ok) {
+      const user = (await res.json()).user;
+      this.setState({ isAuth: true, user: user, authenticating: false });
     } else {
-      this.setState({isAuth: false, authenticating: false});
+      this.setState({ isAuth: false, authenticating: false });
     }
   }
 
@@ -38,30 +39,37 @@ class App extends Component {
     const isAuth = this.state.isAuth;
     const user = this.state.user;
     const authenticating = this.state.authenticating;
-    if(authenticating)
-    {
+    if (authenticating) {
       return (
         <Head />
       )
-      
+
     } else {
-            return (
-              <div className="page-div">
-                <div className="body-div">
-                  <Head user= {user} authenticating = {authenticating}/>
+      return (
+        <Switch>
+          <Switch>
+            <div className="page-div">
+              <div className="body-div">
+                <Head user={user} authenticating={authenticating} />
+                <div className='content'>
                   <Switch>
-                    <Route exact path='/' component = {Body}/>
-                    <Route path='/signup' render = {() => (isAuth ?  (<Redirect to='/timeline'/>) :  (<SignUp />) )}/>
-                    <Route path='/login' render = {() => (isAuth ?  (<Redirect to='/timeline'/>) :  (<Login />) )}/>
-                    <Route path='/timeline' render = {() => (isAuth ?  (<Timeline/>) :  (<Redirect to='/login'/>) ) }  />
-                    <Route path='/profile' render = {() => (isAuth ? (<Profile user = {user} />) : (<Redirect to='/login'/>) )}/>
-                    <Route path='/upload' component = {ReactUploadImage} />
-                  </Switch>
-                  <Footer/>
+                  <Route exact path='/' component={Body} />
+                  <Route path='/signup' render={() => (isAuth ? (<Redirect to='/timeline' />) : (<SignUp />))} />
+                  <Route path='/login' render={() => (isAuth ? (<Redirect to='/timeline' />) : (<Login />))} />
+                  <Route path='/timeline' render={() => (isAuth ? (<Timeline />) : (<Redirect to='/login' />))} />
+                  <Route path='/profile' render={() => (isAuth ? (<Profile user={user} />) : (<Redirect to='/login' />))} />
+                  <Route path='/upload' component={ReactUploadImage} />
+                  <Route path='/shop' component={Shop} />
+                </Switch>
                 </div>
+                <Footer />
               </div>
-            );
-          }
+            </div>
+          </Switch>
+        </Switch>
+
+      );
+    }
   }
 }
 

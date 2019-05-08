@@ -40,117 +40,47 @@ class DesktopHeader extends Component {
         window.location.reload();
     }
 
-    
+
 
     render() {
-        const fixed  = this.state.fixed;
+        const fixed = this.state.fixed;
         const authenticating = this.state.authenticating;
         const user = this.state.user;
-        if(authenticating) {
+        if (authenticating) {
             return (
                 <Visibility
-                once={false}
-                onBottomPassed={this.showFixedMenu}
-                onBottomPassedReverse={this.hideFixedMenu}
-                className="dekstop-header"
-            >
-
-                <Segment
-                    inverted
-                    textAlign='center'
-                    vertical
-                    className="dekstopheader"
+                    once={false}
+                    onBottomPassed={this.showFixedMenu}
+                    onBottomPassedReverse={this.hideFixedMenu}
+                    className="dekstop-header"
                 >
-                    <Menu
-                        fixed={fixed ? 'top' : null}
-                        inverted={!fixed}
-                        pointing={!fixed}
-                        secondary={!fixed}
-                        size='large'
-                        className="dekstopheader-menu"
-                        style={{ padding: '0em 0em' }}
+
+                    <Segment
+                        inverted
+                        textAlign='center'
+                        vertical
+                        className="dekstopheader"
                     >
-                        <Container>
-                            <Menu.Item as={Link} to='/' style={{ padding: '0em 0em' }}  >
-                                <Image src={logo} className='logo-image' />
-                            </Menu.Item>
-                        </Container>
-                    </Menu>
-                </Segment>
-            </Visibility>
+                        <Menu
+                            fixed={fixed ? 'top' : null}
+                            inverted={!fixed}
+                            pointing={!fixed}
+                            secondary={!fixed}
+                            size='large'
+                            className="dekstopheader-menu"
+                            style={{ padding: '0em 0em' }}
+                        >
+                            <Container>
+                                <Menu.Item as={Link} to='/' style={{ padding: '0em 0em' }}  >
+                                    <Image src={logo} className='logo-image' />
+                                </Menu.Item>
+                            </Container>
+                        </Menu>
+                    </Segment>
+                </Visibility>
             )
-        } else  {
-            if(user) {
-                return (
-                <Visibility
-                once={false}
-                onBottomPassed={this.showFixedMenu}
-                onBottomPassedReverse={this.hideFixedMenu}
-                className="dekstop-header"
-            >
-
-                <Segment
-                    inverted
-                    textAlign='center'
-                    vertical
-                    className="dekstopheader"
-                >
-                    <Menu
-                        fixed={fixed ? 'top' : null}
-                        inverted={!fixed}
-                        pointing={!fixed}
-                        secondary={!fixed}
-                        size='large'
-                        className="dekstopheader-menu"
-                        style={{ padding: '0em 0em' }}
-                    >
-                        <Container>
-                            <Menu.Item as={Link} to='/' style={{ padding: '0em 0em' }}  >
-                                <Image src={logo} className='logo-image' />
-                            </Menu.Item>
-                            <Menu.Item position="right">
-                                <Popup
-                                    trigger={
-                                        <Button className="dekstopheader-menu-button">Всички продукти</Button>
-                                    }
-                                    content={
-                                        <ProductsDropdown className="all-products-popup"/>
-                                    }
-                                    position="bottom center"
-                                    basic
-                                    on="click"
-                                />
-
-                                <Button className="dekstopheader-menu-button">Планове</Button>
-                                <Popup
-                                    position="bottom left"
-                                    trigger={
-                                        <Button className="dekstopheader-menu-button">Помощ</Button>
-                                    }
-                                    content={
-                                        <HelpDropdown/>
-                                    }
-                                    basic
-                                    on="click"
-                                />
-                            </Menu.Item>
-                            <Menu.Item position="right">
-                                <Button as={Link} to='/timeline' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }} className="dekstopheader-button" color="blue">
-                                    Дневник
-                                </Button>
-                                <Button as={Link} to='/profile' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }} className="dekstopheader-button" color="blue">
-                                    Профил
-                                </Button>
-                                <Button onClick = {this.handleSignOut} inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }} className="dekstopheader-button" color="blue">
-                                    Изход
-                                </Button>
-                            </Menu.Item>
-                        </Container>
-                    </Menu>
-                </Segment>
-            </Visibility>
-                )
-            }  else  {
+        } else {
+            if (user) {
                 return (
                     <Visibility
                         once={false}
@@ -158,7 +88,7 @@ class DesktopHeader extends Component {
                         onBottomPassedReverse={this.hideFixedMenu}
                         className="dekstop-header"
                     >
-        
+
                         <Segment
                             inverted
                             textAlign='center'
@@ -179,30 +109,48 @@ class DesktopHeader extends Component {
                                         <Image src={logo} className='logo-image' />
                                     </Menu.Item>
                                     <Menu.Item position="right">
-                                        <Popup
-                                            trigger={
-                                                <Button className="dekstopheader-menu-button">Всички продукти</Button>
-                                            }
-                                            content={
-                                                <ProductsDropdown className="all-products-popup"/>
-                                            }
-                                            position="bottom center"
-                                            basic
-                                            on="click"
-                                        />
-        
-                                        <Button className="dekstopheader-menu-button">Планове</Button>
-                                        <Popup
-                                            position="bottom left"
-                                            trigger={
-                                                <Button className="dekstopheader-menu-button">Помощ</Button>
-                                            }
-                                            content={
-                                                <HelpDropdown/>
-                                            }
-                                            basic
-                                            on="click"
-                                        />
+                                        <Button as={Link} to='/timeline' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }} className="dekstopheader-button" color="blue">
+                                            Дневник
+                                </Button>
+                                        <Button as={Link} to='/profile' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }} className="dekstopheader-button" color="blue">
+                                            Профил
+                                </Button>
+                                        <Button onClick={this.handleSignOut} inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }} className="dekstopheader-button" color="blue">
+                                            Изход
+                                </Button>
+                                    </Menu.Item>
+                                </Container>
+                            </Menu>
+                        </Segment>
+                    </Visibility>
+                )
+            } else {
+                return (
+                    <Visibility
+                        once={false}
+                        onBottomPassed={this.showFixedMenu}
+                        onBottomPassedReverse={this.hideFixedMenu}
+                        className="dekstop-header"
+                    >
+
+                        <Segment
+                            inverted
+                            textAlign='center'
+                            vertical
+                            className="dekstopheader"
+                        >
+                            <Menu
+                                fixed={fixed ? 'top' : null}
+                                inverted={!fixed}
+                                pointing={!fixed}
+                                secondary={!fixed}
+                                size='large'
+                                className="dekstopheader-menu"
+                                style={{ padding: '0em 0em' }}
+                            >
+                                <Container>
+                                    <Menu.Item as={Link} to='/' style={{ padding: '0em 0em' }}  >
+                                        <Image src={logo} className='logo-image' />
                                     </Menu.Item>
                                     <Menu.Item position='right' style={{ padding: '1em 0em' }}>
                                         <Popup
