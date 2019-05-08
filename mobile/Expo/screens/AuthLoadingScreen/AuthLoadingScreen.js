@@ -7,6 +7,7 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
+import styles from './styles';
 
 export default class AuthLoadingScreen extends React.Component {
   constructor(props) {

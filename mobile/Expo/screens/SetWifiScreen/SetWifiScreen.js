@@ -1,6 +1,7 @@
 import React from 'react';
 import { ScrollView, StyleSheet, View, Text, TextInput, Button,  AsyncStorage } from 'react-native';
-import { ExpoLinksView } from '@expo/samples';
+
+import styles from './styles';
 
 export default class SetWifiScreen extends React.Component {
   constructor(props) {
@@ -33,30 +34,3 @@ export default class SetWifiScreen extends React.Component {
     this.props.navigation.navigate('Devices');
   }
 }
-
-const styles = StyleSheet.create({
-  label:{
-    padding:20,
-    fontSize:25,
-  },
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  usernamebox: {
-    padding: 50,
-    paddingLeft: 25,
-    paddingTop: 10,
-    fontSize: 30,
-    borderBottomWidth: 0,
-    borderBottomColor: '#rgb(200,200,200)'
-  },
-  passwordbox: {
-    paddingBottom: 50,
-    paddingLeft: 25,
-    paddingTop: 10,
-    fontSize: 30,
-    borderBottomWidth: 0,
-    borderBottomColor: '#rgb(200,200,200)'
-  },
-});

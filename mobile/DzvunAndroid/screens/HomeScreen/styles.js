@@ -86,5 +86,11 @@ export default StyleSheet.create({
   helpLinkText: {
     fontSize: 14,
     color: '#2e78b7',
-  }
+  },
+  menuButton:{
+    paddingHorizontal:20
+  },
+  menuIcon:{
+        color:'white'
+    }
 });

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Text, View, Platform } from 'react-native';
 import { Ionicons } from 'react-native-vector-icons';
-import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import { createStackNavigator, createBottomTabNavigator,createDrawerNavigator } from 'react-navigation';
 import TabBarIcon from '../components/TabBarIcon';
 import { Icon } from 'react-native-elements';
 
@@ -10,7 +10,8 @@ import SettingsScreen from '../screens/SettingsScreen/SettingsScreen';
 import DevicesScreen from '../screens/DevicesScreen/DevicesScreen';
 import SetWifiScreen from '../screens/SetWifiScreen/SetWifiScreen';
 import LinksScreen from '../screens/LinksScreen/LinksScreen';
-
+import BluetoothScanScreen from '../screens/BluetoothScanScreen/BluetoothScanScreen';
+import MenuButton from '../components/MenuButton/MenuButton';
 
 const HomeStack = createStackNavigator({
   Home: { screen: HomeScreen },
@@ -18,7 +19,7 @@ const HomeStack = createStackNavigator({
 });
 
 HomeStack.navigationOptions = {
-  tabBarLabel: 'Инфо',
+  drawerLabel: 'Инфо',
   tabBarIcon: ({ focused }) => (
     <Icon
       name='info'
@@ -32,7 +33,7 @@ const SettingsStack = createStackNavigator({
 });
 
 SettingsStack.navigationOptions = {
-  tabBarLabel: 'Настройки',
+  drawerLabel: 'Настройки',
   tabBarIcon: ({ focused }) => (
     <Icon
       name='settings'
@@ -43,10 +44,12 @@ SettingsStack.navigationOptions = {
 const DevicesStack = createStackNavigator({
   Devices: { screen: DevicesScreen },
   WiFiSetup: { screen: SetWifiScreen },
+  BluetoothScan: {screen: BluetoothScanScreen}
 });
 
 DevicesStack.navigationOptions = {
   tabBarLabel: 'Устройства',
+  drawerLabel: 'Устройства',
   tabBarIcon: ({ focused }) => (
     <Icon
       name='visibility'
@@ -55,7 +58,7 @@ DevicesStack.navigationOptions = {
 };
 
 
-export default createBottomTabNavigator(
+export default createDrawerNavigator(
   {
     Home: { screen: HomeStack },
     Devices: { screen: DevicesStack },
@@ -63,6 +66,10 @@ export default createBottomTabNavigator(
   },
   {
     navigationOptions: ({ navigation }) => ({
+
+      headerRight : ({navigation}) => {
+        return (<Text>Test</Text>);
+      },
       tabBarIcon: ({ focused, tintColor }) => {
         const { routeName } = navigation.state;
         let iconName;

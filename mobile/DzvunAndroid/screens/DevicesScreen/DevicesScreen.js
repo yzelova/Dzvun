@@ -2,6 +2,7 @@ import React from 'react';
 import { ScrollView, View, StyleSheet, Image, Text, TouchableOpacity, AsyncStorage } from 'react-native';
 import { Buffer } from 'buffer';
 import styles from './styles';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class DevicesScreen extends React.Component {
   constructor(props) {
@@ -17,10 +18,19 @@ export default class DevicesScreen extends React.Component {
     this.timer = setInterval(() => this._LoadImages(), 1000)
   }
 
-  static navigationOptions = {
+  static navigationOptions = ({navigation }) => ({
     title: 'Устройства',
-    //header: null,
-  };
+    drawerLabel: 'Устройства',
+    headerLeft: (
+      <TouchableOpacity style={styles.menuButton}  onPress={()=>navigation.toggleDrawer()}>
+            <Icon name="navicon" size={30} style={styles.menuIcon} />
+      </TouchableOpacity>
+    ),
+    headerStyle: {
+      backgroundColor: 'cornflowerblue',
+    },
+    headerTintColor: '#fff',
+  });
 
 
 
@@ -59,7 +69,7 @@ export default class DevicesScreen extends React.Component {
 
   _LoadImages = async () => {
     if (this.state.device == 'True') {
-      const images = (await (await fetch('http://87.116.66.100:5000/timeline', {
+      const images = (await (await fetch('https://dzvunserver.cfapps.eu10.hana.ondemand.com/timeline', {
         method: "GET"
       })).json()).imageRes;
       //console.log(images);
@@ -76,9 +86,9 @@ export default class DevicesScreen extends React.Component {
     const renderedImages = this.renderImages();
     this.state.device == 'False' ? this._LoadDevices() : null;
     return (
-      <ScrollView style={styles.container}>
+      <ScrollView contentContainerStyle={styles.container}>
         {this.state.device == 'True' ?
-          <View style={styles.screen}>
+          <ScrollView style={styles.screen}>
             <Text style={styles.text}>
               В момента имате 1 свързано устройство и то показва:
             </Text>
@@ -88,21 +98,17 @@ export default class DevicesScreen extends React.Component {
                 {renderedImages}
               </View>
             }
-          </View>
+          </ScrollView>
           :
           <View style={styles.screen}>
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('WiFiSetup')}>
-              <View style={styles.box}>
-                {/* Go ahead and delete ExpoLinksView and replace it with your
-           * content, we just wanted to provide you with some helpful links */}
-                <Image source={require('../../assets/images/plus.png')} style={{ width: 250, height: 250, paddingBottom:20 }} />
-              </View>
-            </TouchableOpacity>
             <View>
               <Text style={styles.text}>
-                В момента нямате свързани устройства
+                В момента нямате свързани устройства.
               </Text>
             </View>
+            <TouchableOpacity style={styles.addButton} onPress={() => this.props.navigation.navigate('BluetoothScan')}>
+              <Text style={{fontSize: 50, textAlign: 'center', color: '#fff'}}>+</Text>
+            </TouchableOpacity>
           </View>
         }
       </ScrollView>

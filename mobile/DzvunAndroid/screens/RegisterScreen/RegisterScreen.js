@@ -1,14 +1,16 @@
 import React from 'react';
 import {
-  ActivityIndicator,
-  AsyncStorage,
-  Text,
-  StyleSheet,
-  TextInput,
-  View,
-  Button,
-  Image,
-  TouchableOpacity,
+    ActivityIndicator,
+    AsyncStorage,
+    Text,
+    StyleSheet,
+    TextInput,
+    View,
+    Button,
+    Image,
+    TouchableOpacity,
+    TouchableWithoutFeedback,
+    Keyboard
 } from 'react-native';
 import { showMessage } from "react-native-flash-message";
 import FlashMessage from "react-native-flash-message";
@@ -18,32 +20,32 @@ import styles from './styles';
 
 export default class SignInScreen extends React.Component {
 
-  static navigationOptions = {
-    title: 'Влезте в своя акаунт',
-    headerStyle: {
-      backgroundColor: 'cornflowerblue',
-    },
-    headerTintColor: '#fff',
+    static navigationOptions = {
+        title: 'Регистрация',
+        headerStyle: {
+            backgroundColor: 'cornflowerblue',
+        },
+        headerTintColor: '#fff',
 
-  }
-
-  onPressSignUp = () => {
-    this.props.navigation.navigate('SignUp');
-  }
-
-  constructor() {
-    super();
-    this.state = {
-      email: "",
-      password: "",
-      fcmToken:null
     }
-  }
 
-  componentDidMount() {
+    constructor() {
+        super();
+        this.state = {
+            firstName: "",
+            lastName: "",
+            email: "",
+            password: "",
+        }
+    }
+
+      componentDidMount() {
     console.log("Component did mount");
     this.checkPermission();
     this.createNotificationListeners(); //add this line
+  }
+
+  componentWillUnmount() {
     this.notificationListener;
     this.notificationOpenedListener;
   }
@@ -121,6 +123,7 @@ export default class SignInScreen extends React.Component {
   }
 
    async getToken() {
+    console.log("------------------------------------GettingToken-----------------------------");
     let fcmToken = await AsyncStorage.getItem('fcmToken');
     if (!fcmToken) {
       fcmToken = await firebase.messaging().getToken();
@@ -130,6 +133,7 @@ export default class SignInScreen extends React.Component {
         await AsyncStorage.setItem('fcmToken', fcmToken);
       }
     }
+    console.log("++++++++++++++++++++++++++++TOKEN++++++++++++++++++++++++")
     console.log('fcmToken:', fcmToken);
     this.setState({fcmToken});
   }
@@ -145,68 +149,68 @@ export default class SignInScreen extends React.Component {
     }
   }
 
-  _signInAsync = async () => {
-    this.setState({loadingLogin:true})
-    const res = await fetch('https://dzvunserver.cfapps.eu10.hana.ondemand.com/login', {
-      method: 'POST',
-      credentials: 'same-origin',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: JSON.stringify({
-        email: this.state.email,
-        password: this.state.password,
-        token: this.state.fcmToken
-      })
-    })
-    if (res.ok) {
-      await AsyncStorage.setItem('userToken', 'abc');
-      await AsyncStorage.setItem('userEmail', this.state.email);
-      await AsyncStorage.setItem('Device', 'False');
-      this.props.navigation.navigate('App');
-    }
-    else {
-      showMessage({
-        message: "Грешна парола или email!",
-        type: "danger",
-      });
-    }
-    this.setState({loadingLogin:false})
-  };
-
-  render() {
-    console.log(this.state.fcmToken);
-    return (
-      <View style={styles.view}>
-        <View style={styles.imageView}>
-          <Image
-            source={
-              require('../../assets/images/dzvunicon.png')
-            }
-            style={styles.image}
-          />
-        </View>
-        {this.state.loadingLogin?
-          <ActivityIndicator size="large" color="#0000ff" />
-            :
-          <View>
-            <TextInput autoCapitalize='none' secureTextEntry={false} style={styles.box} onChangeText={(text) => this.setState({ email: text })} placeholder='Email' />
-            <TextInput autoCapitalize='none' secureTextEntry={true} style={styles.box} onChangeText={(text) => this.setState({ password: text })} placeholder='Парола' />
-            <TouchableOpacity style={styles.signInButton} onPress={this._signInAsync}>
-              <Text style={styles.signInText}>Вход</Text>
-            </TouchableOpacity>
-            <FlashMessage position="top" />
-            <View style={styles.textContainer}>
-              <Text style={styles.signUpText}>Нямате акаунт? Създайте нов сега!</Text>
-              <TouchableOpacity style={styles.signUpButton} onPress={this.onPressSignUp}>
-                <Text style={styles.signUpButtonText}>Регистрация</Text>
-              </TouchableOpacity>
+    render() {
+        return (
+            <View style={styles.view}>
+                <TouchableWithoutFeedback onPress={() => { Keyboard.dismiss() }}>
+                    <View>
+                        <View style={styles.imageView}>
+                            <Image
+                                source={
+                                    require('../../assets/images/dzvunicon.png')
+                                }
+                                style={styles.image}
+                            />
+                        </View>
+                        <TextInput secureTextEntry={false} style={styles.box} onChangeText={(text) => this.setState({ firstName: text })} placeholder='Собствено име' />
+                        <TextInput secureTextEntry={false} style={styles.box} onChangeText={(text) => this.setState({ lastName: text })} placeholder='Фамилия' />
+                        <TextInput autoCapitalize='none' secureTextEntry={false} style={styles.box} onChangeText={(text) => this.setState({ email: text })} placeholder='Email' keyboardType='email-address' />
+                        <TextInput autoCapitalize='none' secureTextEntry={true} style={styles.box} onChangeText={(text) => this.setState({ password: text })} placeholder='Парола' />
+                        <TouchableOpacity style={styles.signInButton} onPress={this._signUpAsync}>
+                            <Text style={styles.signInText}>Регистрация</Text>
+                        </TouchableOpacity>
+                        <FlashMessage position="top" />
+                    </View>
+                </TouchableWithoutFeedback>
             </View>
-          </View>
-        }
-      </View>
-    );
-  }
+        );
+    }
 
+    _signUpAsync = async () => {
+        if (this.state.firstName === "" || this.state.lastName === "" || this.state.email === "" || this.state.password === "") {
+            showMessage({
+                message: "Всички полета са задължителни!",
+                type: "danger",
+            })
+            return;
+        }
+        const res = await fetch('https://dzvunserver.cfapps.eu10.hana.ondemand.com/signup', {
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+            body: JSON.stringify({
+                firstName: this.state.firstName,
+                lastName: this.state.lastName,
+                email: this.state.email,
+                password: this.state.password,
+                token: this.state.fcmToken
+            })
+        })
+        if (res.ok) {
+            await AsyncStorage.setItem('userToken', 'abc');
+            await AsyncStorage.setItem('userEmail', this.state.email);
+            await AsyncStorage.setItem('Device', 'False');
+            this.props.navigation.navigate('App');
+        }
+        else {
+            showMessage({
+                message: "Този Email вече е използван!",
+                type: "danger",
+            });
+        }
+    };
 }
+

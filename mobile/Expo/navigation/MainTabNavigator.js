@@ -1,15 +1,15 @@
 import React from 'react';
 import { Button, Text, View, Platform } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons } from 'react-native-vector-icons';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 import TabBarIcon from '../components/TabBarIcon';
 import { Icon } from 'react-native-elements';
 
-import HomeScreen from '../screens/HomeScreen';
-import SettingsScreen from '../screens/SettingsScreen';
-import DevicesScreen from '../screens/DevicesScreen';
-import SetWifiScreen from '../screens/SetWifiScreen';
-import LinksScreen from '../screens/LinksScreen';
+import HomeScreen from '../screens/HomeScreen/HomeScreen';
+import SettingsScreen from '../screens/SettingsScreen/SettingsScreen';
+import DevicesScreen from '../screens/DevicesScreen/DevicesScreen';
+import SetWifiScreen from '../screens/SetWifiScreen/SetWifiScreen';
+import LinksScreen from '../screens/LinksScreen/LinksScreen';
 
 
 const HomeStack = createStackNavigator({
@@ -78,7 +78,7 @@ export default createBottomTabNavigator(
       },
     }),
     tabBarOptions: {
-      activeTintColor: '#4f6beb',
+      activeTintColor: 'red',
       inactiveTintColor: 'gray',
     },
   }

@@ -46,11 +46,5 @@ export default StyleSheet.create({
     justifyContent: 'center',
     marginBottom: 10,
     fontSize: 16
-  },
-  menuButton:{
-    paddingHorizontal:20
-  },
-  menuIcon:{
-        color:'white'
-    }
+  }
 });
