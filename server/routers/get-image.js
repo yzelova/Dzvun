@@ -12,7 +12,7 @@ const upload = multer({ storage: storage });
 
 //const testUserId = 77;
 
-const deviceAddress = 'B8:27:EB:10:56:F3';
+//const deviceAddress = 'B8:27:EB:10:56:F3';
 
 module.exports = (ormModels) => {
     const UserImage = ormModels.UserImage;
@@ -23,7 +23,7 @@ module.exports = (ormModels) => {
 
     router.post('/', upload.single('myImage'), async (req, res) => {
         const image = req.file.buffer;
-        //const deviceAddress = req.body.deviceId;
+        const deviceAddress = req.body.deviceId;
         const device = await Device.findOne({
             where: {
                 deviceAddress

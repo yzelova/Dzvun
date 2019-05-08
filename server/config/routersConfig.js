@@ -6,4 +6,5 @@ module.exports = (app, ormModels, passport) => {
     app.use('/uploadImage', require('../routers/get-image')(ormModels));
     app.use('/timeline', require('../routers/timeline')(ormModels));
     app.use('/admin', require('../routers/admin')(passport, ormModels));
+    app.use('/add-device', require('../routers/add-device')(ormModels))
 }
