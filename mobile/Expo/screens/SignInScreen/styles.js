@@ -33,8 +33,8 @@ export default StyleSheet.create({
     fontSize: 20,
     borderRadius: 10,
     borderWidth: 0.5,
-    borderColor: "cornflowerblue",
-    backgroundColor: "cornflowerblue"
+    borderColor: "#fff",
+    backgroundColor: "#4f6beb"
   },
   textContainer: {
     marginHorizontal: 50,

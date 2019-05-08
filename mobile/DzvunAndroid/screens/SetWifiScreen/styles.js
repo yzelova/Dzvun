@@ -1,4 +1,4 @@
-import { Stylesheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   label:{
@@ -25,4 +25,21 @@ export default StyleSheet.create({
     borderBottomWidth: 0,
     borderBottomColor: '#rgb(200,200,200)'
   },
+  scanButton: {
+    paddingTop: 20,
+    paddingBottom: 20,
+    marginTop: 30,
+    marginBottom: 0,
+    marginHorizontal: 10,
+    fontSize: 20,
+    borderRadius: 10,
+    borderWidth: 0.5,
+    borderColor: "#fff",
+    backgroundColor: "cornflowerblue"
+  },
+  scanButtonText: {
+    color: '#fff',
+    fontSize: 20,
+    textAlign: 'center'
+  }
 });

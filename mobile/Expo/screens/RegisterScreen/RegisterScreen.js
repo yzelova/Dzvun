@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import { showMessage } from "react-native-flash-message";
 import FlashMessage from "react-native-flash-message";
+import styles from './styles';
 
 
 export default class SignInScreen extends React.Component {
@@ -45,7 +46,7 @@ export default class SignInScreen extends React.Component {
                         <View style={styles.imageView}>
                             <Image
                                 source={
-                                    require('../assets/images/dzvunicon.png')
+                                    require('../../assets/images/dzvunicon.png')
                                 }
                                 style={styles.image}
                             />
@@ -72,7 +73,7 @@ export default class SignInScreen extends React.Component {
             })
             return;
         }
-        const res = await fetch('https://dzvun-server.cfapps.eu10.hana.ondemand.com/signup', {
+        const res = await fetch('https://dzvunserver.cfapps.eu10.hana.ondemand.com/signup', {
             method: 'POST',
             credentials: 'same-origin',
             headers: {
@@ -100,52 +101,3 @@ export default class SignInScreen extends React.Component {
     };
 }
 
-const styles = StyleSheet.create({
-    label: {
-        paddingTop: 80,
-        paddingBottom: 10,
-        paddingLeft: 25,
-        paddingRight: 25,
-        fontSize: 20
-    },
-    imageView: {
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    image: {
-        width: 64,
-        height: 64,
-        resizeMode: 'contain',
-        marginTop: 20
-    },
-    box: {
-        paddingLeft: 25,
-        paddingTop: 10,
-        paddingBottom: 10,
-        marginTop: 20,
-        marginBottom: 0,
-        marginHorizontal: 10,
-        fontSize: 20,
-        borderRadius: 10,
-        borderWidth: 0.5,
-        borderColor: "#d6d7da"
-    },
-    signInButton: {
-        paddingTop: 10,
-        paddingBottom: 10,
-        marginTop: 20,
-        marginBottom: 0,
-        marginHorizontal: 10,
-        fontSize: 20,
-        borderRadius: 10,
-        borderWidth: 0.5,
-        borderColor: "#fff",
-        backgroundColor: "#4f6beb"
-    },
-    signInText: {
-        color: '#fff',
-        fontSize: 20,
-        textAlign: 'center'
-    }
-})

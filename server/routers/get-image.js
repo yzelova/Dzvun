@@ -19,6 +19,7 @@ module.exports = (ormModels) => {
 
     router.post('/', upload.single('myImage'), async (req, res) => {
         const image = req.file.buffer;
+        console.log(req.body.deviceId);
         //TO DO: User ID to be included in request from device
         const userId = testUserId;
         await UserImage.create({userId, image})

@@ -2,11 +2,11 @@ import { createSwitchNavigator, createStackNavigator, createAppContainer } from 
 
 // Implementation of HomeScreen, OtherScreen, SignInScreen, AuthLoadingScreen
 // goes here.
-import LandingScreen from '../screens/LandingScreen';
-import AuthLoadingScreen from '../screens/AuthLoadingScreen';
+import LandingScreen from '../screens/LandingScreen/LandingScreen';
+import AuthLoadingScreen from '../screens/AuthLoadingScreen/AuthLoadingScreen';
 import MainTabNavigator from './MainTabNavigator';
-import LogInScreen from '../screens/SignInScreen';
-import SignUpScreen from '../screens/RegisterScreen';
+import LogInScreen from '../screens/SignInScreen/SignInScreen';
+import SignUpScreen from '../screens/RegisterScreen/RegisterScreen';
 
 const AuthStack = createStackNavigator({ Landing: LandingScreen });
 

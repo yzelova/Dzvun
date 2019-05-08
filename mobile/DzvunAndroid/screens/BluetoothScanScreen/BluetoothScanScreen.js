@@ -1,47 +1,23 @@
 import React from 'react';
-import {
-  Image,
-  ActivityIndicator,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  Button
-} from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { ScrollView, StyleSheet, View, Text, TextInput, Button, AsyncStorage, TouchableOpacity,ActivityIndicator } from 'react-native';
+import Icon from 'react-native-vector-icons/AntDesign';
 import BluetoothSerial from 'react-native-bluetooth-serial';
 import buffer from 'buffer';
+
 import styles from './styles';
 
-export default class SettingsScreen extends React.Component {
-
+export default class BluetoothScanScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      device: null,
       info: "",
       discovering: false,
       devicesFormatted: []
     };
   }
 
-  static navigationOptions = ({navigation }) => ({
-    title: 'Настройки',
-    drawerLabel: 'Настройки',
-    headerLeft: (
-      <TouchableOpacity style={styles.menuButton}  onPress={()=>navigation.toggleDrawer()}>
-            <Icon name="navicon" size={30} style={styles.menuIcon} />
-      </TouchableOpacity>
-    ),
-    headerStyle: {
-      backgroundColor: 'cornflowerblue',
-    },
-    headerTintColor: '#fff',
-  });
-
-
-  componentWillMount() {
+   componentWillMount() {
     Promise.all([BluetoothSerial.isEnabled(), BluetoothSerial.list()]).then(
       values => {
         const [isEnabled, devices] = values;
@@ -70,6 +46,8 @@ export default class SettingsScreen extends React.Component {
           });
       }
     });
+
+    this.discoverUnpaired();
   }
 
   toggleBluetooth (value) {
@@ -86,7 +64,6 @@ export default class SettingsScreen extends React.Component {
   }
 
   discoverUnpaired () {
-
     if (this.state.discovering) {
       return false
     } else {
@@ -97,7 +74,9 @@ export default class SettingsScreen extends React.Component {
       })
       .catch((err) => console.log(err.message))
     }
-  }  
+  }
+
+  
 
   pairDevice (device) {
       BluetoothSerial.pairDevice(device.id)
@@ -160,29 +139,66 @@ export default class SettingsScreen extends React.Component {
     BluetoothSerial.write("Dataaaaaaaaaaaaaaa")
   }
 
+  hello = async (device) =>{
+    await AsyncStorage.setItem('futureDeviceName',device.name);
+    await AsyncStorage.setItem('futureDeviceId',device.id);
+    this.props.navigation.navigate('WiFiSetup');
+  }
+
+
+
   render() {
-    /* Go ahead and delete ExpoConfigView and replace it with your
-     * content, we just wanted to give you a quick view of your config */
     return (
-      <View>
-        <Button title="Scan" onPress={()=>this.discoverUnpaired()} />
-        <Text>Устройства:</Text>
+      <View contentContainerStyle={{ flex: 1, justifyContent: 'center' }}>
         {this.state.discovering?
-          <ActivityIndicator size="large" color="#0000ff" />
+          <View>
+            <Text style={styles.scanningText}>В момента сканираме за устройства</Text>
+            <Text style={styles.bottomScanningText}> близо до вас </Text>
+            <ActivityIndicator style={styles.activityIndicator} size="large" color="#0000ff" />
+          </View>
           :
-          null
+          <View>
+            <Text style={styles.headerText}> Намерени устройства: </Text>
+            <View style={styles.devicesView} >
+              <ScrollView>
+              {this.state.unpairedDevices?
+                  this.state.unpairedDevices.map((device, key) =>
+                    device.name=='Dzvun'?
+                      <TouchableOpacity  key={device.id} style={styles.suggestedDevice} onPress={()=>this.hello(device)}>
+                            <View style={{
+                              paddingHorizontal: 10,
+                              flexDirection: "row",
+                              justifyContent: "space-between",
+                              alignItems: "center"
+                              }}>
+                              <Text style={styles.suggestedDeviceText} key={device.id}> {device.name}
+                              </Text>
+                              <Icon name="right" size={30} color={'white'} />
+                            </View>
+                      </TouchableOpacity>
+                      :
+                      <TouchableOpacity  key={device.id} style={styles.foundDevice}  onPress={()=>this.hello(device)}>
+                            <View style={{
+                              paddingHorizontal: 10,
+                              flexDirection: "row",
+                              justifyContent: "space-between",
+                              alignItems: "center"
+                              }}>
+                              <Text style={styles.deviceText} key={device.id}> {device.name}
+                              </Text>
+                            </View>
+                      </TouchableOpacity>
+                  )
+                  :
+                  <Text> Няма намерни устройства</Text>
+              }
+              </ScrollView>
+            </View>
+            <TouchableOpacity style={styles.scanButton} onPress={()=>this.discoverUnpaired()}>
+                  <Text style={styles.scanButtonText}>Сканирай пак</Text>
+            </TouchableOpacity>
+          </View>
         }
-        {this.state.unpairedDevices?
-          this.state.unpairedDevices.map((device, key) =>
-          <Text key={device.id} > {device.name} </Text>
-          )
-          :
-          <Text> Няма </Text>
-        }
-        <Text> {JSON.stringify(this.state.unpairedDevices)}</Text>
-        <Button title="Pair" onPress={()=>this.findAndPair()} />
-        <Button title="Connect" onPress={()=>this.findAndConnect()} />
-        <Button title="Send" onPress = { ()=> this.write("DATAAAAAAAAAAAAAAAAAAAAAAAAAA")} />
       </View>
     );
   }

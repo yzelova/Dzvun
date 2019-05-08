@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   label:{
@@ -25,10 +25,4 @@ export default StyleSheet.create({
     borderBottomWidth: 0,
     borderBottomColor: '#rgb(200,200,200)'
   },
-  menuButton:{
-    paddingHorizontal:20
-  },
-  menuIcon:{
-        color:'white'
-    }
 });

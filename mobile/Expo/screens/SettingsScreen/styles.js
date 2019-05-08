@@ -25,10 +25,4 @@ export default StyleSheet.create({
     borderBottomWidth: 0,
     borderBottomColor: '#rgb(200,200,200)'
   },
-  menuButton:{
-    paddingHorizontal:20
-  },
-  menuIcon:{
-        color:'white'
-    }
 });

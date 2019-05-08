@@ -1,6 +1,7 @@
 import React from 'react';
 import { ScrollView, View, StyleSheet, Image, Text, TouchableOpacity, AsyncStorage } from 'react-native';
 import { Buffer } from 'buffer';
+import styles from './styles';
 
 export default class DevicesScreen extends React.Component {
   constructor(props) {
@@ -61,7 +62,7 @@ export default class DevicesScreen extends React.Component {
 
   _LoadImages = async () => {
     if (this.state.device == 'True') {
-      const images = (await (await fetch('https://dzvun-server.cfapps.eu10.hana.ondemand.com/timeline', {
+      const images = (await (await fetch('https://dzvunserver.cfapps.eu10.hana.ondemand.com/timeline', {
         method: "GET"
       })).json()).imageRes;
       //console.log(images);
@@ -107,52 +108,3 @@ export default class DevicesScreen extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  addButton: {
-    alignSelf: 'flex-end',
-    bottom: 0,
-    position: 'absolute',
-    backgroundColor: '#4f6beb',
-    borderRadius: 35,
-    width: 70,
-    height: 70,
-    marginRight: 10,
-    marginBottom: 10
-  },
-  container: {
-    marginTop: 20,
-    flex: 1,
-    paddingTop: 15,
-    backgroundColor: '#fff',
-  },
-  screen: {
-    flex: 1,
-    alignItems: 'center',
-    //justifyContent: 'center',
-    flexDirection: 'column'
-  },
-  box: {
-    paddingTop: 30,
-    width: '70%',
-    height: '90%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 0,
-    borderColor: '#BBBBBB'
-  },
-  boxItems: {
-    alignItems: 'flex-end',
-    marginLeft: 'auto',
-    justifyContent: 'center',
-    borderWidth: 0,
-    borderColor: '#BBBBBB'
-  },
-  text: {
-    marginTop: 100,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 10,
-    fontSize: 16
-  }
-});
