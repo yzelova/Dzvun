@@ -12,6 +12,7 @@ module.exports = (ormModels) => {
     const Device = ormModels.Device;
     const UserDevice = ormModels.UserDevice;
 
+    //Път за свързване на устройство с потребител
     router.post('/', async (req, res) => {
         try {
             const deviceAddress = req.body.device;

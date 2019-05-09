@@ -1,3 +1,4 @@
+//Инициализиране на помощен User модел
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 module.exports = (ormModels) => {

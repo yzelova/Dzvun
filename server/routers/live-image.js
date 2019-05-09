@@ -11,12 +11,15 @@ const storage = multer.memoryStorage();
 
 const upload = multer({ storage: storage });
 
+//Пътища, изпозвани при поискване на снимка на живо
+
 module.exports = (ormModels) => {
     const User = ormModels.User;
     const Device = ormModels.Device;
     const UserDevice = ormModels.UserDevice;
     const UserRequestedImage = ormModels.UserRequestedImage;
 
+    //Установява дали потребителя е поискал снимка на живо, извиква се от устройство през определен интервал от време
     router.post('/get-state', async (req, res) => {
         const deviceAddress = req.body.device;
         const device = await Device.findOne({
@@ -43,6 +46,7 @@ module.exports = (ormModels) => {
         }
     })
 
+    //Публикуване на снимка на живо от устройството
     router.post('/post-image', upload.single('myImage'), async (req, res) => {
         const image = req.file.buffer;
         const deviceAddress = req.body.device;
@@ -74,6 +78,7 @@ module.exports = (ormModels) => {
         }
     })
 
+    //Получаване на публикуваната снимка на живо
     router.post('/get-image', async (req, res) => {
         const email = req.body.user;
         if (email) {
@@ -98,6 +103,7 @@ module.exports = (ormModels) => {
         }
     })
 
+    //Изтриване на използваната снимка на живо
     router.post('/delete-image', async (req, res) => {
         try {
             const email = req.body.email;
@@ -120,6 +126,7 @@ module.exports = (ormModels) => {
 
     })
 
+    //Получаване на сигнал от потребителя за поискана снимка на живо
     router.post('/set-state', async (req, res) => {
         try {
             const email = req.body.email;

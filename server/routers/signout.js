@@ -8,6 +8,7 @@ router.use(bodyParser.urlencoded({
 
 module.exports = (csrfProtection) => {
 
+    //Път за изход на потребителя
     router.get('/', (req, res) => {
         req.logout();
         res.json();

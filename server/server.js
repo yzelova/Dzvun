@@ -1,3 +1,5 @@
+//Инициализиране на сървъра
+
 const express = require('express');
 
 const app = express();

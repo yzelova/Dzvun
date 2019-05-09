@@ -8,6 +8,7 @@ router.use(bodyParser.urlencoded({
 
 module.exports = (passport, csrfProtection) => {
 
+    //Път за регистрация на потребителя
     router.post('/', (req, res, next) => {
         passport.authenticate('local-signup', function(err, user) {
             if(err) {
