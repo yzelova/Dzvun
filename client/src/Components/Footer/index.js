@@ -6,6 +6,7 @@ import {
 import { Link } from 'react-router-dom';
 import './index.css';
 
+//Долен колонтитули (footer)
 
 class Body extends Component {
 

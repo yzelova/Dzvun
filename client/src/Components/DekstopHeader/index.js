@@ -20,7 +20,7 @@ import './index.css';
 const fetch = require('../../helpers/fetch');
 const get = fetch.get;
 
-
+//Горен колонтитули (header)
 
 class DesktopHeader extends Component {
 

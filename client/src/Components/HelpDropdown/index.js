@@ -6,6 +6,8 @@ import {
 } from 'semantic-ui-react';
 import './index.css';
 
+//Помощ - пхадащо меню
+
 class ProductsDropdown extends Component {
 
     constructor() {

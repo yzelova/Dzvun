@@ -14,6 +14,8 @@ import './App.css';
 
 const get = require('./helpers/fetch').get;
 
+//Инициализиране на приложението
+
 class App extends Component {
   constructor() {
     super();

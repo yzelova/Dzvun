@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {Container, Header, Divider, Image} from 'semantic-ui-react'
 import bellImg from '../../public/images/bell.png';
 
+//Профилна страница
+
 class Profile extends Component {
 
     constructor(props) {

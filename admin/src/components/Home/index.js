@@ -8,6 +8,8 @@ import ViewDevices from '../ViewDevices/index';
 
 const post = require('../../helpers/fetch').post;
 
+//Компонент за начална страница
+
 export default class Home extends React.Component {
 
     constructor(props) {
