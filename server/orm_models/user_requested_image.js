@@ -1,7 +1,7 @@
-//Модел UserImage - пази всички снимки на потребителите, като пази връзката потребител -> снимка 
+//Модел UserRequestedImage - пази снимки, поискани на живо от потребител
 const Sequelize = require('sequelize');
 module.exports = (sequelize) => {
-    const UserImage = sequelize.define('user_image', {
+    const UserRequestedImage = sequelize.define('user_requested_image', {
         id: {
           field: 'id',
           type: Sequelize.INTEGER,
@@ -19,5 +19,5 @@ module.exports = (sequelize) => {
       },  {
         freezeTableName: true,
       });
-      return UserImage;
+      return UserRequestedImage;
 }

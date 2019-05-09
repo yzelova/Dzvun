@@ -8,9 +8,9 @@ import './index.css';
 
 
 const fetch = require('../../helpers/fetch')
-const get = fetch.get;
+const post = fetch.post;
 
-
+//Страница с наличните снимки
 
 class Timeline extends Component {
 
@@ -39,7 +39,7 @@ class Timeline extends Component {
 
   async _LoadData(){
     console.log('Loaded Data');
-    const images = (await (await get('/timeline')).json()).imageRes;
+    const images = (await (await post('/timeline')).json()).imageRes;
     const imagesBase64 = [];
     images.forEach(image => {
       const base64 = this.arrayBufferToBase64(image.data);
@@ -55,7 +55,7 @@ class Timeline extends Component {
       const src = 'data:image/jpeg;base64,' + image;
       ret.push(
         <div key={id}>
-          <Image centered src={src} alt={id} ></Image>
+          <Image centered src={src} alt={id} className='ring-image'></Image>
         </div>
       )
       id++;

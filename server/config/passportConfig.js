@@ -1,3 +1,8 @@
+/*
+Конфигуриране на passport.js - библиотека за автентикация
+*/
+
+
 const LocalStrategy = require('passport-local');
 
 
@@ -24,6 +29,7 @@ module.exports = (passport, ormModels, models) => {
     }
   });
 
+  //Вход на админ
   passport.use('local-login-admin', new LocalStrategy(
     async function (username, password, done) {
       const user = await ormUser.findOne({ where: { email: username } });
@@ -37,7 +43,7 @@ module.exports = (passport, ormModels, models) => {
     }
   ));
 
-
+  //Вход на потребител
   passport.use('local-login', new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password',
@@ -63,6 +69,7 @@ module.exports = (passport, ormModels, models) => {
     }
   ));
 
+  //Регистрация на потребител
   passport.use('local-signup', new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password',

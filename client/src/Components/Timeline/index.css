@@ -1,3 +1,7 @@
 .userImage {
     display: flex
 }
+
+.ring-image {
+    padding: 20px!important;
+}

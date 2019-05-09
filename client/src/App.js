@@ -14,6 +14,8 @@ import './App.css';
 
 const get = require('./helpers/fetch').get;
 
+//Инициализиране на приложението
+
 class App extends Component {
   constructor() {
     super();
@@ -62,7 +64,7 @@ class App extends Component {
                   <Route path='/shop' component={Shop} />
                 </Switch>
                 </div>
-                <Footer />
+                <Footer user = {user} authenticating = {authenticating} />
               </div>
             </div>
           </Switch>

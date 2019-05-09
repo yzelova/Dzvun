@@ -3,6 +3,8 @@ import { Form, Button, Message } from 'semantic-ui-react';
 
 const post = require('../../helpers/fetch').post;
 
+//Компонент за добавяне на ново устройство
+
 export default class AddDevice extends React.Component {
 
     constructor(props) {

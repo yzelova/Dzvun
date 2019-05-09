@@ -7,6 +7,7 @@ import './index.css'
 import firstImage from '../../public/images/1.png'
 import secondImage from '../../public/images/2.png'
 
+//Компонент от началната страница - swiper
 
 export default class Demo extends Component {
   constructor() {

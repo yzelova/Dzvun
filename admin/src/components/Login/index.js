@@ -5,6 +5,8 @@ import logo from '../../images/dzvun-logo.png'
 
 const post = require('../../helpers/fetch').post;
 
+//Компонент при вход
+
 export default class Login extends React.Component {
 
     constructor(props) {

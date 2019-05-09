@@ -6,6 +6,8 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 
 const get = require('../src/helpers/fetch').get
 
+//Инициализиране на приложението
+
 class App extends React.Component {
 
   constructor() {

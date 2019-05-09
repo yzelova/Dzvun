@@ -7,6 +7,7 @@ router.use(bodyParser.urlencoded({
 }));
 
 module.exports = (csrfProtection) => {
+    //Път за получаване на активния потребител
     router.get('/user', (req, res) => {
         const user = req.user;
         if(user) res.json({user})

@@ -1,4 +1,6 @@
 
+//Помощни методи за заявки към сървъра
+
 async function post(path, content) {
     const res = await fetch(path, {
         method: 'POST',

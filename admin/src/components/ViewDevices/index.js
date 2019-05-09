@@ -3,6 +3,8 @@ import { Segment, Image, Table, Button } from 'semantic-ui-react';
 
 const { get, post } = require('../../helpers/fetch');
 
+//Компонент за преглед на налични устройство
+
 export default class ViewDevices extends React.Component {
 
     constructor(props) {

@@ -14,6 +14,8 @@ import { Link } from 'react-router-dom';
 import './index.css';
 
 
+//Начална страница
+
 class Body extends Component {
   render() {
 

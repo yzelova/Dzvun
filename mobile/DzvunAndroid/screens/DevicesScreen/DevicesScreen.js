@@ -69,6 +69,22 @@ export default class DevicesScreen extends React.Component {
     this.setState({ device });
   }
 
+
+  _LoadImages = async () => {
+    if (this.state.device == 'True') {
+      const images = (await (await fetch('http://localhost:5000/timeline', {
+        method: "GET"
+      })).json()).imageRes;
+      //console.log(images);
+      const imagesBase64 = [];
+      images.forEach(image => {
+        const base64 = this.arrayBufferToBase64(image.data);
+        imagesBase64.push(base64);
+      });
+      this.setState({ loadingImages: false, images: imagesBase64 })
+    }
+  }
+
   render() {
     return (
       <ScrollView contentContainerStyle={styles.container}>

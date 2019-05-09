@@ -9,6 +9,7 @@ import {
 import './index.css';
 import productImage from "../../public/images/dzvun.jpg";
 
+//Продукти - падащо меню
 
 class ProductsDropdown extends Component {
 

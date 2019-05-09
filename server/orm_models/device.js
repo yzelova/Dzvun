@@ -1,3 +1,4 @@
+//Модел Device - съхранява наличните устройства и техните уникални адреси
 const Sequelize = require('sequelize');
 module.exports = (sequelize) => {
     const Device = sequelize.define('devices', {
