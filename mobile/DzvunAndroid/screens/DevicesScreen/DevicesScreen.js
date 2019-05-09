@@ -69,7 +69,7 @@ export default class DevicesScreen extends React.Component {
 
   _LoadImages = async () => {
     if (this.state.device == 'True') {
-      const images = (await (await fetch('https://dzvunserver.cfapps.eu10.hana.ondemand.com/timeline', {
+      const images = (await (await fetch('http://localhost:5000/timeline', {
         method: "GET"
       })).json()).imageRes;
       //console.log(images);

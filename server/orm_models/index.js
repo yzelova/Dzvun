@@ -3,8 +3,12 @@ module.exports =  (sequelize) => {
     const UserImage = require('./user_image')(sequelize);
     const Device = require('./device')(sequelize);
     const UserDevice = require('./user_device')(sequelize);
+    const UserRequestedImage = require('./user_requested_image')(sequelize);
     User.hasMany(UserImage);
     UserImage.belongsTo(User);
+
+    User.hasMany(UserRequestedImage);
+    UserRequestedImage.belongsTo(User);
 
     User.hasMany(UserDevice);
     UserDevice.belongsTo(User);
@@ -14,6 +18,7 @@ module.exports =  (sequelize) => {
         User,
         UserImage,
         Device, 
-        UserDevice
+        UserDevice,
+        UserRequestedImage
     }
 }

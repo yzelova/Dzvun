@@ -30,6 +30,10 @@ module.exports = (sequelize) => {
     fcmToken: {
       field: 'fcm_token',
       type: Sequelize.STRING
+    },
+    liveImageRequested: {
+      field: 'live_image_requested',
+      type: Sequelize.BOOLEAN
     }
   }, {
       timestamps: false,

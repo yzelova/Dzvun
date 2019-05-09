@@ -62,7 +62,7 @@ class App extends Component {
                   <Route path='/shop' component={Shop} />
                 </Switch>
                 </div>
-                <Footer />
+                <Footer user = {user} authenticating = {authenticating} />
               </div>
             </div>
           </Switch>

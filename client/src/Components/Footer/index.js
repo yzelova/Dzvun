@@ -9,7 +9,17 @@ import './index.css';
 
 class Body extends Component {
 
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            user: props.user,
+            authenticating: props.authenticating
+        };
+    }
+
     render() {
+        const user = this.state.user;
         return (
             <Segment className="footer-div">
                 <Grid>
@@ -29,9 +39,9 @@ class Body extends Component {
                                             <Container as={Link} to='/shop' className="footer-group-text"> Закупуване на устройство </Container>
                                             <Container className="footer-group-text"> Сваляне на мобилното приложение </Container>
                                         </Grid.Column>
-                                        <Grid.Column>
-                                            <Container as={Link} to='/login' className="footer-group-text"> Вход </Container>
-                                            <Container as={Link} to='/signup' className="footer-group-text"> Регистрация </Container>
+                                        <Grid.Column hidden>
+                                            <Container as={Link} to='/login' hidden className="footer-group-text"> {user ? "" : "Вход"} </Container>
+                                            <Container as={Link} to='/signup' hidden className="footer-group-text">  {user ? "" : "Регистрация"} </Container>
                                         </Grid.Column>
                                     </Grid>
                                 </Container>
