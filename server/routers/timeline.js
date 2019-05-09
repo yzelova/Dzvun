@@ -8,7 +8,7 @@ module.exports = (ormModels) => {
     const UserImage = ormModels.UserImage;
     const User = ormModels.User
 
-
+    //Път за получаване на наличните снимки на потребителя
     router.post('/', async (req, res) => {
         const user = req.user ? req.user : req.body.email;
         let id;

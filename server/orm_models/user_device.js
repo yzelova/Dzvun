@@ -1,3 +1,4 @@
+//Модел UserDevice - пази връзката между потребител и устройство
 const Sequelize = require('sequelize');
 module.exports = (sequelize) => {
     const UserDevice = sequelize.define('user_device', {

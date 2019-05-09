@@ -1,3 +1,8 @@
+/*
+Конфигуриране на основни библиотеки
+Създаване на таблици в базата
+*/
+
 const sequelize = require('./dbConfig');
 const passport = require('passport')
 const bodyParser = require('body-parser');

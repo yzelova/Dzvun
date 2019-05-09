@@ -1,3 +1,4 @@
+// Конфигурация на пътищата (routes)
 module.exports = (app, ormModels, passport) => {
     app.use('/login', require('../routers/login')(passport));
     app.use('/signup', require('../routers/signup')(passport));

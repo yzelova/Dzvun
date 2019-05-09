@@ -1,3 +1,4 @@
+//Модел UserImage - пази всички снимки на потребителите, като пази връзката потребител -> снимка 
 const Sequelize = require('sequelize');
 module.exports = (sequelize) => {
     const UserImage = sequelize.define('user_image', {

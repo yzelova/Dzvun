@@ -1,3 +1,6 @@
+/*
+Конфигуриране на базата данни
+*/
 const Sequelize = require('sequelize');
 const cfServices = require('cf-services');
 

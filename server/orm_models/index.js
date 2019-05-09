@@ -1,3 +1,4 @@
+//Инициализация на ORM моделите
 module.exports =  (sequelize) => {
     const User = require('./user')(sequelize);
     const UserImage = require('./user_image')(sequelize);
