@@ -8,14 +8,14 @@ export default class DevicesScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      device: 'False',
+      device: null,
       images: [],
       loadingImages: true
     };
   }
 
   componentDidMount() {
-    this.timer = setInterval(() => this._LoadImages(), 1000)
+    this._LoadDevices();
   }
 
   static navigationOptions = ({navigation }) => ({
@@ -63,41 +63,31 @@ export default class DevicesScreen extends React.Component {
   }
 
   _LoadDevices = async () => {
-    const device = await AsyncStorage.getItem('Device');
+    const device = await AsyncStorage.getItem('futureDeviceName');
+    console.log('------------------------------------');
+    console.log(device);
     this.setState({ device });
   }
 
-  _LoadImages = async () => {
-    if (this.state.device == 'True') {
-      const images = (await (await fetch('https://dzvunserver.cfapps.eu10.hana.ondemand.com/timeline', {
-        method: "GET"
-      })).json()).imageRes;
-      //console.log(images);
-      const imagesBase64 = [];
-      images.forEach(image => {
-        const base64 = this.arrayBufferToBase64(image.data);
-        imagesBase64.push(base64);
-      });
-      this.setState({ loadingImages: false, images: imagesBase64 })
-    }
-  }
-
   render() {
-    const renderedImages = this.renderImages();
-    this.state.device == 'False' ? this._LoadDevices() : null;
     return (
       <ScrollView contentContainerStyle={styles.container}>
-        {this.state.device == 'True' ?
-          <ScrollView style={styles.screen}>
+        {this.state.device ?
+          <ScrollView contentContainerStyle={styles.screen}>
             <Text style={styles.text}>
-              В момента имате 1 свързано устройство и то показва:
+              В момента имате 1 свързано устройство:
             </Text>
-            {this.state.loadingImages ?
-              <Text> 0 Снимки </Text> :
-              <View style={styles.container}>
-                {renderedImages}
+            <TouchableOpacity style={styles.foundDevice}  >
+              <View style={{
+                paddingHorizontal: 10,
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center"
+                }}>
+                  <Text style={styles.deviceText}> {this.state.device}
+                  </Text>
               </View>
-            }
+            </TouchableOpacity>
           </ScrollView>
           :
           <View style={styles.screen}>
@@ -106,11 +96,11 @@ export default class DevicesScreen extends React.Component {
                 В момента нямате свързани устройства.
               </Text>
             </View>
-            <TouchableOpacity style={styles.addButton} onPress={() => this.props.navigation.navigate('BluetoothScan')}>
-              <Text style={{fontSize: 50, textAlign: 'center', color: '#fff'}}>+</Text>
-            </TouchableOpacity>
           </View>
         }
+        <TouchableOpacity style={styles.addButton} onPress={() => this.props.navigation.navigate('BluetoothScan')}>
+              <Text style={{fontSize: 50, textAlign: 'center', color: '#fff'}}>+</Text>
+            </TouchableOpacity>
       </ScrollView>
     );
   }

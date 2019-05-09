@@ -1,43 +1,59 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  label:{
-    padding:20,
-    fontSize:25,
+  imageView: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
+  image: {
+    width: 64,
+    height: 64,
+    resizeMode: 'contain',
+    marginTop: 20
   },
-  usernamebox: {
-    padding: 50,
+  box: {
     paddingLeft: 25,
     paddingTop: 10,
-    fontSize: 30,
-    borderBottomWidth: 0,
-    borderBottomColor: '#rgb(200,200,200)'
-  },
-  passwordbox: {
-    paddingBottom: 50,
-    paddingLeft: 25,
-    paddingTop: 10,
-    fontSize: 30,
-    borderBottomWidth: 0,
-    borderBottomColor: '#rgb(200,200,200)'
-  },
-  scanButton: {
-    paddingTop: 20,
-    paddingBottom: 20,
-    marginTop: 30,
+    paddingBottom: 10,
+    marginTop: 50,
     marginBottom: 0,
     marginHorizontal: 10,
     fontSize: 20,
     borderRadius: 10,
     borderWidth: 0.5,
-    borderColor: "#fff",
+    borderColor: "#d6d7da"
+  },
+  signInButton: {
+    paddingTop: 10,
+    paddingBottom: 10,
+    marginTop: 50,
+    marginBottom: 0,
+    marginHorizontal: 10,
+    fontSize: 20,
+    borderRadius: 10,
+    borderWidth: 0.5,
+    borderColor: "cornflowerblue",
     backgroundColor: "cornflowerblue"
   },
-  scanButtonText: {
+  textContainer: {
+    marginHorizontal: 50,
+    marginTop: 20
+  },
+  signUpText: {
+    fontSize: 14,
+    textAlign: 'center',
+    color: '#000000'
+  },
+  signUpButton: {
+    margin: 5
+  },
+  signUpButtonText: {
+    fontSize: 14,
+    color: '#4f6beb',
+    textAlign: 'center'
+  },
+  signInText: {
     color: '#fff',
     fontSize: 20,
     textAlign: 'center'
