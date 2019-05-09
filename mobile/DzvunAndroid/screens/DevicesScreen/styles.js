@@ -52,5 +52,17 @@ export default StyleSheet.create({
   },
   menuIcon:{
         color:'white'
-    }
+    },
+  foundDevice:{
+    backgroundColor:'white',
+    paddingLeft:20,
+    paddingRight:20,
+    paddingTop:10,
+    paddingBottom:10,
+    borderBottomWidth:0.3,
+    borderTopWidth:0.3
+  },
+  deviceText:{
+      fontSize: 22,
+  },
 });

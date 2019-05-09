@@ -1,4 +1,5 @@
 {
   "name": "DzvunAndroid",
-  "displayName": "DzvunAndroid"
+  "displayName": "Dzvun",
+  "icon": "./assets/images/dzvunicon.png",
 }

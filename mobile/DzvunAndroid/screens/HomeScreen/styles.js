@@ -92,5 +92,32 @@ export default StyleSheet.create({
   },
   menuIcon:{
         color:'white'
-    }
+    },
+  signInText: {
+    color: '#fff',
+    fontSize: 20,
+    textAlign: 'center',
+    paddingHorizontal:20
+  },
+    signInButton: {
+    paddingTop: 10,
+    paddingBottom: 10,
+    marginTop: 50,
+    marginBottom: 20,
+    marginHorizontal: 20,
+    fontSize: 20,
+    borderRadius: 10,
+    borderWidth: 0.5,
+    borderColor: "cornflowerblue",
+    backgroundColor: "cornflowerblue"
+  },
+  image:{
+    width: 250,
+    height: 250,
+    marginLeft:'auto',
+    marginRight:'auto',
+  },
+  imageContainer:{
+    paddingTop:10,
+  }
 });

@@ -4,6 +4,6 @@
 
 cd /
 cd home/pi/Desktop/Dzvun
-sudo python Button.py
+sudo python Main.py
 cd /
 
