@@ -10,6 +10,8 @@ import {
 } from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 
+//Странично меню за мобилни устройства
+
 class MobileSidebar extends Component {
 
     state = {sidebarOpened: false};

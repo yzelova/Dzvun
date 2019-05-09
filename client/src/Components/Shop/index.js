@@ -11,7 +11,7 @@ import {
 import './style.css';
 import device from '../../public/images/device.png'
 
-
+//Страница с продукти
 
 class Body extends Component {
     render() {

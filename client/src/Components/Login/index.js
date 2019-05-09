@@ -6,6 +6,8 @@ import './index.css';
 const req = require('../../helpers/fetch');
 const post = req.post;
 
+//Вход
+
 class Login extends Component {
 
     constructor() {

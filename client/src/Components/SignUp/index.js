@@ -4,6 +4,8 @@ import { Segment, Form, Container, Button, Checkbox, Modal } from 'semantic-ui-r
 const req = require('../../helpers/fetch');
 const post = req.post;
 
+//Регистрация
+
 class Register extends Component {
 
     constructor() {

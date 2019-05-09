@@ -10,7 +10,7 @@ import './index.css';
 const fetch = require('../../helpers/fetch')
 const post = fetch.post;
 
-
+//Страница с наличните снимки
 
 class Timeline extends Component {
 

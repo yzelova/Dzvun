@@ -6,6 +6,7 @@ import {
   MobileView
 } from "react-device-detect";
 
+//Условен Head
 
 class Head extends Component 
 {
