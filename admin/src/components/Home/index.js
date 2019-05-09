@@ -48,7 +48,6 @@ export default class Home extends React.Component {
                                                         <Menu.Header>Функции</Menu.Header>
                                                         <Menu.Item name='add' as={Link} to='/home/add' onClick={() => this.setState({ activeItem: "add" })} active={this.state.activeItem === 'add'} >Добавяне на устройство</Menu.Item>
                                                         <Menu.Item name='view' as={Link} to='/home/view' onClick={() => this.setState({ activeItem: "view" })} active={this.state.activeItem === 'view'}>Всички налични устройства</Menu.Item>
-                                                        <Menu.Item name='used' as={Link} to='/home/used' onClick={() => this.setState({ activeItem: "used" })} active={this.state.activeItem === 'used'}>Използвани устройства</Menu.Item>
                                                         <Menu.Item onClick={this.handleLogOut}>Изход</Menu.Item>
                                                     </Menu.Item>
                                                 </Menu>
@@ -60,7 +59,6 @@ export default class Home extends React.Component {
                                                 <Route exact path='/home' render={() => <Header>Моля, изберете функция</Header>} />
                                                 <Route path='/home/add' render={() => <AddDevice />} />
                                                 <Route path='/home/view' render={() => <ViewDevices />} />
-                                                <Route path='/home/used' render={() => <Header>used</Header>} />
                                             </Switch>
                                         </Grid.Column>
                                     </Grid.Row>
