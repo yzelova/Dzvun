@@ -1,7 +1,7 @@
 import { createSwitchNavigator, createStackNavigator, createAppContainer, createDrawerNavigator } from 'react-navigation';
 
+// Създаваме отделни групи от екрани, които комбинираме в навигацията на приложението
 // Implementation of HomeScreen, OtherScreen, SignInScreen, AuthLoadingScreen
-// goes here.
 import LandingScreen from '../screens/LandingScreen/LandingScreen';
 import AuthLoadingScreen from '../screens/AuthLoadingScreen/AuthLoadingScreen';
 import MainTabNavigator from './MainTabNavigator';

@@ -153,17 +153,18 @@ export default class SetWifiScreen extends React.Component {
 
   render() {
     return (
-      <View style={{ flex: 1, justifyContent: 'center' }}>
+      <View >
         {this.state.isLoading?
           <ActivityIndicator size="large" color="#0000ff" />
           :
           <View>
             <Text style={styles.label}>Свързани сте с: {this.state.futureDeviceName}</Text>
-            <Text style={styles.label}>Мрежа:</Text>
+            <Text style={styles.smallLabel}>Моля въведете данните на вашата мрежа</Text>
             <TextInput secureTextEntry={false} style={styles.box} placeholder='Мрежа' onChangeText={(text) => this.setState({ network: text })} />
-            <Text style={styles.label}>Парола:</Text>
             <TextInput secureTextEntry={true} style={styles.box} placeholder='Парола' onChangeText={(text) => this.setState({ password: text })} />
-            <Button title="Запамети" style={styles.signInButton} onPress={()=>this._saveWiFiSettings()} />
+            <TouchableOpacity style={styles.signInButton} onPress={()=>this._saveWiFiSettings()}>
+              <Text style={styles.signInText}>Запамети</Text>
+            </TouchableOpacity>
           </View>
         }
       </View>
@@ -192,6 +193,6 @@ export default class SetWifiScreen extends React.Component {
     this.sleep(1000);
     this.write();
     this.setState({isLoading:false});
-    this.props.navigation.navigate('Devices');
+    this.props.navigation.navigate('Devices',{device:this.state.futureDeviceName});
   }
 }

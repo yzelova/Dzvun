@@ -117,10 +117,30 @@ android {
             include "armeabi-v7a", "x86", "arm64-v8a", "x86_64"
         }
     }
+    signingConfigs {
+        release {
+            if (project.hasProperty('MYAPP_RELEASE_STORE_FILE')) {
+                storeFile file(MYAPP_RELEASE_STORE_FILE)
+                storePassword MYAPP_RELEASE_STORE_PASSWORD
+                keyAlias MYAPP_RELEASE_KEY_ALIAS
+                keyPassword MYAPP_RELEASE_KEY_PASSWORD
+            }
+        }
+    }
     buildTypes {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+        }
+    }
+    subprojects {
+        afterEvaluate {project ->
+            if (project.hasProperty("android")) {
+                android {
+                    compileSdkVersion 28
+                    buildToolsVersion "28.0.3"
+                }
+            }
         }
     }
     // applicationVariants are e.g. debug, release
@@ -139,8 +159,6 @@ android {
 }
 
 dependencies {
-    implementation project(':react-native-bluetooth-serial')
-    implementation project(':react-native-ble-plx')
     implementation project(':react-native-firebase')
     implementation project(':react-native-vector-icons')
     implementation project(':react-native-gesture-handler')
@@ -151,6 +169,7 @@ dependencies {
     implementation "com.google.android.gms:play-services-base:16.1.0"
     implementation "com.google.firebase:firebase-core:16.0.8"
     implementation "com.google.firebase:firebase-messaging:17.5.0"
+    implementation project(':react-native-bluetooth-serial')
 
 }
 
