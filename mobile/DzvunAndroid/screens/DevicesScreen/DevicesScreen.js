@@ -15,7 +15,10 @@ export default class DevicesScreen extends React.Component {
   }
 
   componentDidMount() {
-    this._LoadDevices();
+    const {navigation} = this.props;
+      navigation.addListener ('willFocus', () =>{
+      this._LoadDevices();
+    });
   }
 
   static navigationOptions = ({navigation }) => ({
@@ -63,10 +66,12 @@ export default class DevicesScreen extends React.Component {
   }
 
   _LoadDevices = async () => {
-    const device = await AsyncStorage.getItem('futureDeviceName');
-    console.log('------------------------------------');
-    console.log(device);
-    this.setState({ device });
+    if(!this.state.device){
+      const device = await AsyncStorage.getItem('futureDeviceName');
+      console.log('------------------------------------');
+      console.log(device);
+      this.setState({ device }); 
+    }
   }
 
   render() {

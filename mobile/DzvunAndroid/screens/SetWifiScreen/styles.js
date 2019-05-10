@@ -38,7 +38,7 @@ export default StyleSheet.create({
   },
   textContainer: {
     marginHorizontal: 50,
-    marginTop: 20
+    marginTop: 10
   },
   signUpText: {
     fontSize: 14,
@@ -57,5 +57,16 @@ export default StyleSheet.create({
     color: '#fff',
     fontSize: 20,
     textAlign: 'center'
+  },
+  label:{
+    fontSize:30,
+    textAlign: 'center',
+    paddingBottom:10
+  },
+  smallLabel:{
+    fontSize:25,
+    textAlign:'center',
+    paddingLeft:10,
+    paddingRight:10
   }
 });
